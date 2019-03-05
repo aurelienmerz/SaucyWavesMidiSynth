@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "maximilian.h"
 
 //==============================================================================
 struct SineWaveSound   : public SynthesiserSound
@@ -37,32 +38,39 @@ struct SineWaveVoice   : public SynthesiserVoice
     void startNote (int midiNoteNumber, float velocity,
                     SynthesiserSound*, int /*currentPitchWheelPosition*/) override
     {
+        env1.trigger = 1;
         currentAngle = 0.0;
         level = velocity * 0.15;
         tailOff = m_release;
-        m_adsr.noteOn();
         
+        frequency = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
         auto cyclesPerSecond = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
         auto cyclesPerSample = cyclesPerSecond / getSampleRate();
-        
-        //cyclesPerSample = m_attack / getSampleRate();
-        
+    
         angleDelta = (cyclesPerSample) * 2.0 * MathConstants<double>::pi;
     }
     
-    void stopNote (float /*velocity*/, bool allowTailOff) override
+    void stopNote (float velocity, bool allowTailOff) override
     {
-        m_adsr.noteOff();
+        env1.trigger = 0;
+        
+        allowTailOff = true;
         if (allowTailOff)
         {
-            if (tailOff == 0.0)
-                tailOff = m_release;
+            if(velocity == 0)
+                clearCurrentNote();
         }
-        else
-        {
-            clearCurrentNote();
-            angleDelta = 0.0;
-        }
+//        level = 0;
+//        if (allowTailOff)
+//        {
+//            if (tailOff == 0.0)
+//                tailOff = 1.0; //m_release;
+//        }
+//        else
+//        {
+//            clearCurrentNote();
+//            angleDelta = 0.0;
+//        }
     }
     
     void pitchWheelMoved (int) override      {}
@@ -70,52 +78,71 @@ struct SineWaveVoice   : public SynthesiserVoice
     
     void renderNextBlock (AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override
     {
+        env1.setAttack(2000);
+        env1.setDecay(500);
+        env1.setSustain(0.8);
+        env1.setRelease(2000);
         
-        if (angleDelta != 0.0)
+        for (int sample = 0; sample < numSamples; ++sample)
         {
-            if (tailOff > 0.0) // [7]
+            double theWave = osc1.saw(frequency);
+            double theSound = env1.adsr(theWave,env1.trigger) * level;
+//            double filteredSound = filter1.lores(theSound, 40,0.1);
+            
+            for(int channel = 0 ;channel < outputBuffer.getNumChannels();++channel)
             {
-                while (--numSamples >= 0)
-                {
-                    auto currentSample = (float) (std::sin (currentAngle) * (level * tailOff));
-                    
-                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
-                        outputBuffer.addSample (i, startSample, currentSample);
-                    
-                    currentAngle += angleDelta;
-                    ++startSample;
-                    
-                    tailOff *= 0.99; // [8]
-                    
-                    if (tailOff <= 0.005)
-                    {
-                        clearCurrentNote(); // [9]
-                        
-                        angleDelta = 0.0;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                while (--numSamples >= 0) // [6]
-                {
-                    auto currentSample = (float) (std::sin (currentAngle) * level);
-                    
-                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
-                        outputBuffer.addSample (i, startSample, currentSample);
-                    
-                    currentAngle += angleDelta;
-                    ++startSample;
-                }
+                outputBuffer.addSample(channel, sample, theSound);
             }
         }
+//        if (angleDelta != 0.0)
+//        {
+//            if (tailOff > 0.0) // [7]
+//            {
+//                while (--numSamples >= 0)
+//                {
+//                    auto currentSample = (float) (std::sin (currentAngle) * (level * tailOff));
+//
+//                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
+//                        outputBuffer.addSample (i, startSample, currentSample);
+//
+//                    currentAngle += angleDelta;
+//                    ++startSample;
+//
+//                    tailOff *= 0.99; // [8]
+//
+//                    if (tailOff <= 0.005)
+//                    {
+//                        clearCurrentNote(); // [9]
+//
+//                        angleDelta = 0.0;
+//                        break;
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                while (--numSamples >= 0) // [6]
+//                {
+//                    auto currentSample = (float) (std::sin (currentAngle) * level);
+//
+//                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
+//                        outputBuffer.addSample (i, startSample, currentSample);
+//
+//                    currentAngle += angleDelta;
+//                    ++startSample;
+//                }
+//            }
+//        }
     }
     
 private:
     double currentAngle = 0.0, angleDelta = 0.0, level = 0.0, tailOff = 0.0;
     double m_attack = 0.0, m_release = 0.0;
+    double frequency = 0.0;
     ADSR m_adsr;
+    maxiOsc osc1;
+    maxiEnv env1;
+    maxiFilter filter1;
 };
 
 //==============================================================================
