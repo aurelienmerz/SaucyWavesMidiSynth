@@ -23,13 +23,13 @@ struct SineWaveSound   : public SynthesiserSound
 //==============================================================================
 struct SineWaveVoice   : public SynthesiserVoice
 {
-    SineWaveVoice() {}
-    SineWaveVoice(double attack, double release)
-    {
-        m_attack = attack;
-        m_release = release;
-    }
+    double m_attackTime = 0.0, m_release = 0.0, m_decay = 0.0, m_sustain = 0.0;
     
+    SineWaveVoice() {}
+    SineWaveVoice(double &attackTime)
+    {
+        m_attackTime = *(&attackTime);
+    }
     bool canPlaySound (SynthesiserSound* sound) override
     {
         return dynamic_cast<SineWaveSound*> (sound) != nullptr;
@@ -39,15 +39,9 @@ struct SineWaveVoice   : public SynthesiserVoice
                     SynthesiserSound*, int /*currentPitchWheelPosition*/) override
     {
         env1.trigger = 1;
-        currentAngle = 0.0;
         level = velocity * 0.15;
-        tailOff = m_release;
         
         frequency = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
-        auto cyclesPerSecond = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
-        auto cyclesPerSample = cyclesPerSecond / getSampleRate();
-    
-        angleDelta = (cyclesPerSample) * 2.0 * MathConstants<double>::pi;
     }
     
     void stopNote (float velocity, bool allowTailOff) override
@@ -55,22 +49,16 @@ struct SineWaveVoice   : public SynthesiserVoice
         env1.trigger = 0;
         
         allowTailOff = true;
+        
         if (allowTailOff)
         {
+            if (tailOff == 0)
+            {
+                tailOff = 1.0;
+            }
             if(velocity == 0)
                 clearCurrentNote();
         }
-//        level = 0;
-//        if (allowTailOff)
-//        {
-//            if (tailOff == 0.0)
-//                tailOff = 1.0; //m_release;
-//        }
-//        else
-//        {
-//            clearCurrentNote();
-//            angleDelta = 0.0;
-//        }
     }
     
     void pitchWheelMoved (int) override      {}
@@ -78,11 +66,11 @@ struct SineWaveVoice   : public SynthesiserVoice
     
     void renderNextBlock (AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override
     {
-        env1.setAttack(2000);
-        env1.setDecay(500);
-        env1.setSustain(0.8);
-        env1.setRelease(2000);
-        
+        std::cout << m_attackTime << std::endl;
+        env1.setAttack(m_attackTime);
+        env1.setDecay(m_decay);
+        env1.setSustain(m_sustain);
+        env1.setRelease(m_release);        
         for (int sample = 0; sample < numSamples; ++sample)
         {
             double theWave = osc1.saw(frequency);
@@ -92,69 +80,32 @@ struct SineWaveVoice   : public SynthesiserVoice
             for(int channel = 0 ;channel < outputBuffer.getNumChannels();++channel)
             {
                 outputBuffer.addSample(channel, sample, theSound);
+                tailOff *= 0.99;
             }
         }
-//        if (angleDelta != 0.0)
-//        {
-//            if (tailOff > 0.0) // [7]
-//            {
-//                while (--numSamples >= 0)
-//                {
-//                    auto currentSample = (float) (std::sin (currentAngle) * (level * tailOff));
-//
-//                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
-//                        outputBuffer.addSample (i, startSample, currentSample);
-//
-//                    currentAngle += angleDelta;
-//                    ++startSample;
-//
-//                    tailOff *= 0.99; // [8]
-//
-//                    if (tailOff <= 0.005)
-//                    {
-//                        clearCurrentNote(); // [9]
-//
-//                        angleDelta = 0.0;
-//                        break;
-//                    }
-//                }
-//            }
-//            else
-//            {
-//                while (--numSamples >= 0) // [6]
-//                {
-//                    auto currentSample = (float) (std::sin (currentAngle) * level);
-//
-//                    for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
-//                        outputBuffer.addSample (i, startSample, currentSample);
-//
-//                    currentAngle += angleDelta;
-//                    ++startSample;
-//                }
-//            }
-//        }
     }
     
 private:
     double currentAngle = 0.0, angleDelta = 0.0, level = 0.0, tailOff = 0.0;
-    double m_attack = 0.0, m_release = 0.0;
     double frequency = 0.0;
-    ADSR m_adsr;
     maxiOsc osc1;
     maxiEnv env1;
     maxiFilter filter1;
 };
 
 //==============================================================================
-class SynthAudioSource   : public AudioSource,
-                           public Slider::Listener
+class SynthAudioSource   : public AudioSource
+//                           public Slider::Listener
 {
 public:
+    double m_attackTime;
+    double &attackTime = m_attackTime;
+    
     SynthAudioSource (MidiKeyboardState& keyState)
     : keyboardState (keyState)
     {
         for (auto i = 0; i < 4; ++i) // [1] We add some voices to our synthesiser. This number of voices added determines the polyphony of the synthesiser.
-            synth.addVoice (new SineWaveVoice(attackSlider.getValue(),releaseSlider.getValue()));
+            synth.addVoice (new SineWaveVoice(*(&attackTime)));
         
         synth.addSound (new SineWaveSound());       // [2] We add the sound so that the synthesiser knows which sounds it can play.
     }
@@ -174,6 +125,8 @@ public:
     
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
+        
+//        std::cout << "attackTime " << attackTime << std::endl;
         bufferToFill.clearActiveBufferRegion();
         
         MidiBuffer incomingMidi;
@@ -190,22 +143,8 @@ public:
         return &midiCollector;
     }
     
-    Slider attackSlider;
-    Label attackLabel;
-    Slider releaseSlider;
-    Label releaseLabel;
-    double currentAttackTime = 0.0, currentReleaseTime = 0.0;
-    
-    void sliderValueChanged (Slider* slider) override
-    {
-        if (slider == &attackSlider){
-            attackSlider.setValue (attackSlider.getValue(), dontSendNotification);
-        } else if (slider == &releaseSlider){
-            releaseSlider.setValue(releaseSlider.getValue(), dontSendNotification);
-        }
-    }
-    
 private:
+    
     MidiKeyboardState& keyboardState;
     Synthesiser synth;
     MidiMessageCollector midiCollector;
@@ -238,10 +177,9 @@ public:
     
     void sliderValueChanged (Slider* slider) override
     {
+//        std::cout << attackSlider.getValue() << std::endl;
         if (slider == &attackSlider){
-            attackSlider.setValue (attackSlider.getValue(), dontSendNotification);
-        } else if (slider == &releaseSlider){
-            releaseSlider.setValue(releaseSlider.getValue(), dontSendNotification);
+            synthAudioSource.m_attackTime = attackSlider.getValue();
         }
     }
     void updateAngleDelta();
@@ -258,22 +196,18 @@ private:
     TextEditor midiMessagesBox;
     double startTime;
     SynthAudioSource synthAudioSource;
-//    ADSR m_adsr;
-    
     Random random;
-    Slider frequencySlider;
-    Label frequencyLabel;
-    Slider levelSlider;
-    Label levelLabel;
+        
     Slider attackSlider;
-    Label attackLabel;
-    Slider releaseSlider;
-    Label releaseLabel;
-    double currentAttackTime = 0.0, currentReleaseTime = 0.0;
+//    Slider decaySlider;
+//    Slider sustainSlider;
+//    Slider releaseSlider;
     
     double currentSampleRate = 0.0, currentAngle = 0.0, angleDelta = 0.0;
     double currentFrequency = 500.0, targetFrequency = 500.0;
     float currentLevel = 0.1f, targetLevel = 0.1f;
+
+    double currentAttackTime = 0.0, currentReleaseTime = 0.0;
     
     void timerCallback() override
     {

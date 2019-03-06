@@ -44,16 +44,7 @@ synthAudioSource(keyboardState)
     addAndMakeVisible (keyboardComponent);
     keyboardState.addListener (this);
     
-//    addAndMakeVisible (midiMessagesBox);
-    midiMessagesBox.setMultiLine (true);
-    midiMessagesBox.setReturnKeyStartsNewLine (true);
-    midiMessagesBox.setReadOnly (true);
-    midiMessagesBox.setScrollbarsShown (true);
-    midiMessagesBox.setCaretVisible (false);
-    midiMessagesBox.setPopupMenuEnabled (true);
-    midiMessagesBox.setColour (TextEditor::backgroundColourId, Colour (0x32ffffff));
-    midiMessagesBox.setColour (TextEditor::outlineColourId, Colour (0x1c000000));
-    midiMessagesBox.setColour (TextEditor::shadowColourId, Colour (0x16000000));
+
     
     //=========================================================================
 ////    addAndMakeVisible (frequencySlider);
@@ -81,27 +72,15 @@ synthAudioSource(keyboardState)
 //
     //=========================================================================
     
-    addAndMakeVisible(synthAudioSource.attackSlider);
-    synthAudioSource.attackSlider.setRange(0.0, 10);
-    synthAudioSource.attackSlider.setValue ((double) synthAudioSource.currentAttackTime, dontSendNotification);
-    synthAudioSource.attackSlider.setTextBoxStyle(Slider::TextBoxLeft, false, 160, synthAudioSource.attackSlider.getTextBoxHeight());
-    synthAudioSource.attackSlider.addListener(this);
-    synthAudioSource.attackSlider.onValueChange = [this] { targetLevel = (float) synthAudioSource.attackSlider.getValue(); };
-    
-    addAndMakeVisible (synthAudioSource.attackLabel);
-    synthAudioSource.attackLabel.setText ("Attack", dontSendNotification);
-    synthAudioSource.attackLabel.attachToComponent (&synthAudioSource.attackSlider, true);
-    
-    addAndMakeVisible(synthAudioSource.releaseSlider);
-    synthAudioSource.releaseSlider.setRange(1.0, 10);
-    synthAudioSource.releaseSlider.setValue ((double) synthAudioSource.currentReleaseTime, dontSendNotification);
-    synthAudioSource.releaseSlider.setTextBoxStyle(Slider::TextBoxLeft, false, 160, synthAudioSource.releaseSlider.getTextBoxHeight());
-    synthAudioSource.releaseSlider.addListener(this);
-    synthAudioSource.releaseSlider.onValueChange = [this] { targetLevel = (float) synthAudioSource.releaseSlider.getValue(); };
-    
-    addAndMakeVisible (synthAudioSource.releaseLabel);
-    synthAudioSource.releaseLabel.setText ("Release", dontSendNotification);
-    synthAudioSource.releaseLabel.attachToComponent (&synthAudioSource.releaseSlider, true);
+    addAndMakeVisible(attackSlider);
+    attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    attackSlider.setRange(0.1f, 5000.0f);
+    attackSlider.setValue ((double) 0.1f);
+//  attackSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 20.0);
+    attackSlider.addListener(this);
+////    synthAudioSource.attackSlider.onValueChange = [this] { synthAudioSource.a = (float) synthAudioSource.attackSlider.getValue(); };
+//    
+
 
     // Some platforms require permissions to open input channels so request that here
     if (RuntimePermissions::isRequired (RuntimePermissions::recordAudio)
@@ -149,42 +128,6 @@ void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRat
 void MainComponent::getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
 {
       synthAudioSource.getNextAudioBlock (bufferToFill);
-//    auto level = (float) levelSlider.getValue();
-//    auto* leftBuffer  = bufferToFill.buffer->getWritePointer (0, bufferToFill.startSample);
-//    auto* rightBuffer = bufferToFill.buffer->getWritePointer (1, bufferToFill.startSample);
-//    auto localTargetFrequency = targetFrequency;
-//    if (localTargetFrequency != currentFrequency)                                                              // [7]
-//    {
-//        auto frequencyIncrement = (localTargetFrequency - currentFrequency) / bufferToFill.numSamples;         // [8]
-//        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-//        {
-//            auto currentSample = (float) std::sin (currentAngle);
-//            currentFrequency += frequencyIncrement;                                                            // [9]
-//            updateAngleDelta();                                                                                // [10]
-//            currentAngle += angleDelta;
-//            leftBuffer[sample]  = currentSample;
-//            rightBuffer[sample] = currentSample;
-//        }
-//        currentFrequency = localTargetFrequency;
-//    }
-//    else                                                                                                       // [11]
-//    {
-//        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-//        {
-//            auto currentSample = (float) std::sin (currentAngle);
-//            currentAngle += angleDelta;
-//            leftBuffer[sample]  = currentSample;
-//            rightBuffer[sample] = currentSample;
-//        }
-//    }
-    
-//    auto localTargetLevel = targetLevel;
-//    bufferToFill.buffer->applyGainRamp (bufferToFill.startSample, bufferToFill.numSamples, currentLevel, localTargetLevel);
-//    currentLevel = localTargetLevel;
-
-    // Right now we are not producing any data, in which case we need to clear the buffer
-    // (to prevent the output of random noise)
-    //bufferToFill.clearActiveBufferRegion();
 }
 
 void MainComponent::releaseResources()
@@ -206,8 +149,8 @@ void MainComponent::paint (Graphics& g)
 }
 void MainComponent::updateAngleDelta()
 {
-    auto cyclesPerSample = frequencySlider.getValue() / currentSampleRate;
-    angleDelta = cyclesPerSample * 2.0 * MathConstants<double>::pi;
+//    auto cyclesPerSample = frequencySlider.getValue() / currentSampleRate;
+//    angleDelta = cyclesPerSample * 2.0 * MathConstants<double>::pi;
 }
 
 void MainComponent::resized()
@@ -215,15 +158,23 @@ void MainComponent::resized()
     // This is called when the MainContentComponent is resized.
     // If you add any child components, this is where you should
     // update their positions.
-    auto sliderLeft = 120;
-    synthAudioSource.attackSlider.setBounds (sliderLeft, 120, getWidth() - sliderLeft - 10, 20);
-    synthAudioSource.releaseSlider.setBounds (sliderLeft, 140, getWidth() - sliderLeft - 10, 20);
+    auto sliderLeft = 150;
+    auto gap = 30;
+    auto attackPos = 150;
+    auto decayPos = attackPos - gap;
+    auto sustainPos = decayPos - gap;
+    auto releasePos = sustainPos - gap;
+
+    attackSlider.setBounds(getWidth()-attackPos,sliderLeft,30,120);
+//    decaySlider.setBounds(getWidth()-decayPos,sliderLeft,30,120);
+//    sustainSlider.setBounds(getWidth()-sustainPos,sliderLeft,30,120);
+//    releaseSlider.setBounds(getWidth()-releasePos,sliderLeft,30,120);
     
     auto area = getLocalBounds();
     
-    midiInputList    .setBounds (area.removeFromTop (36).removeFromRight (getWidth() - 150).reduced (8));
-    keyboardComponent.setBounds (area.removeFromTop (80).reduced(8));
-    midiMessagesBox  .setBounds (area.reduced (8));
+//    midiInputList    .setBounds (area.removeFromTop (36).removeFromRight (getWidth() - 150).reduced (8));
+    keyboardComponent.setBounds (area.removeFromBottom(80)); //removeFromTop (80).reduced(8));
+//    midiMessagesBox  .setBounds (area.reduced (8));
 }
 
 
