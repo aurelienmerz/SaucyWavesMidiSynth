@@ -25,23 +25,14 @@ SaucyWavesSynthAudioProcessor::SaucyWavesSynthAudioProcessor()
 #endif
 attackTime(0.1f),
 tree(*this,nullptr)
-//tree(*this,nullptr,"PARAMETERS",
-//    { std::make_unique<AudioParameterFloat("attack", "Attack", NormalisableRange<float> (0.1f, 5000.0f), 0.0f)>})
 {
     NormalisableRange<float> attackParam(0.1f, 5000.0f);
-//    *attackParam = new RangedAudioParameter("attack","Attack","Attack", AudioProcessorParameter::Category::inputGain);
-//    tree.createAndAddParameter(<#std::unique_ptr<RangedAudioParameter> parameter#>)
-    
     tree.createAndAddParameter("attack", "Attack", "Attack", attackParam, 0.1f, nullptr, nullptr);
     tree.state = ValueTree("Synth");
-//
-//    using Parameter = AudioProcessorValueTreeState::Parameter;
-//    tree.createAndAddParameter(std::make_unique<Parameter>("attack", "Attack", NormalisableRange<float> (0.1f, 5000.0f), 0.01f, nullptr,nullptr));
-    
 //    addParameter(attackP = new AudioParameterFloat("attack","Attack",0.1f, 5000.0f,0.1f));
     mySynth.clearVoices();
     
-    for (auto i = 0; i < 4; ++i) // [1] We add some voices to our synthesiser. This number of voices added determines the polyphony of the synthesiser.
+    for (auto i = 0; i < 4; ++i) 
         mySynth.addVoice (new SynthVoice());
     
     mySynth.clearSounds();

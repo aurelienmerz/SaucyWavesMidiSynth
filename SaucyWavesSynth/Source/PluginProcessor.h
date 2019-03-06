@@ -59,8 +59,6 @@ public:
     
     float attackTime;
     AudioProcessorValueTreeState tree;
-    AudioParameterFloat* attackP;
-    RangedAudioParameter *attackParam;
 
 private:
     
