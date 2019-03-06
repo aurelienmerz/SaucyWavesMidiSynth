@@ -59,12 +59,13 @@ public:
     
     float attackTime;
     AudioProcessorValueTreeState tree;
+    AudioParameterFloat* attackP;
     RangedAudioParameter *attackParam;
 
 private:
     
     Synthesiser mySynth;
-    UndoManager *undoManager;
+
     SynthVoice *myVoice;
     double lastSampleRate;
     //==============================================================================
