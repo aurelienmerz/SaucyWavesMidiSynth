@@ -23,12 +23,38 @@ public:
     }
     //=========================================
     
-    void getParam(float* attack, float* decay, float* sustain, float* release)
+    void getEnvelopeParam(float* attack, float* decay, float* sustain, float* release)
     {
         env1.setAttack(double(*attack));
         env1.setRelease(double(*release));
         env1.setDecay(double(*decay));
         env1.setSustain(double(*sustain));
+    }
+    
+    //=========================================
+    
+    void getOscType(float* selection)
+    {
+        waveSelect = *selection;
+    }
+    
+    double setOscType()
+    {
+        if(waveSelect == 0){
+            return osc1.sinewave(frequency);
+        }
+
+        if(waveSelect == 1){
+            return osc1.saw(frequency);
+        }
+
+        if(waveSelect == 2){
+            return osc1.square(frequency);
+        }
+        else
+        {
+            return osc1.sinewave(frequency);
+        }
     }
     
     //=========================================
@@ -75,8 +101,7 @@ public:
     {
         for(int sample = 0; sample < numSamples ; ++sample)
         {
-            double theWave = osc1.saw(frequency);
-            double theSound = env1.adsr(theWave,env1.trigger) * level;
+            double theSound = env1.adsr(setOscType(),env1.trigger) * level;
             double filteredSound = filter1.lores(theSound,20,0.1);
             
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
@@ -92,6 +117,8 @@ private:
     float level = 0.0;
     float frequency = 0.0;
     double tailOff = 0.0;
+    
+    int waveSelect;
     maxiOsc osc1;
     maxiEnv env1;
     maxiFilter filter1;
