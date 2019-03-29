@@ -28,8 +28,12 @@ tree(*this,nullptr)
 {
     NormalisableRange<float> attackParam(0.1f, 5000.0f);
     NormalisableRange<float> releaseParam(0.1f, 5000.0f);
+    NormalisableRange<float> decayParam(0.1f, 5000.0f);
+    NormalisableRange<float> sustainParam(0.1f, 5000.0f);
     tree.createAndAddParameter("attack", "Attack", "Attack", attackParam, 0.1f, nullptr, nullptr);
     tree.createAndAddParameter("release", "Release", "Release", releaseParam, 0.1f, nullptr, nullptr);
+    tree.createAndAddParameter("decay", "Decay", "Decay", decayParam, 0.1f, nullptr, nullptr);
+    tree.createAndAddParameter("sustain", "Sustain", "Sustain", sustainParam, 0.1f, nullptr, nullptr);
     tree.state = ValueTree("Synth");
 //    addParameter(attackP = new AudioParameterFloat("attack","Attack",0.1f, 5000.0f,0.1f));
     mySynth.clearVoices();
@@ -158,7 +162,10 @@ void SaucyWavesSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mi
     {
         if((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(i))))
         {
-            myVoice->getParam(tree.getRawParameterValue("attack"),tree.getRawParameterValue("release"));
+            myVoice->getParam(tree.getRawParameterValue("attack"),
+                              tree.getRawParameterValue("decay"),
+                              tree.getRawParameterValue("sustain"),
+                              tree.getRawParameterValue("release"));
         }
     }
     buffer.clear();

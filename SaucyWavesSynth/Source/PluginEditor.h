@@ -40,7 +40,11 @@ private:
     
     Slider attackSlider;
     Slider releaseSlider;
+    Slider decaySlider;
+    Slider sustainSlider;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
 
     
