@@ -23,9 +23,10 @@ public:
     }
     //=========================================
     
-    void getParam(float* attack)
+    void getParam(float* attack, float* release)
     {
         env1.setAttack(double(*attack));
+        env1.setRelease(double(*release));
     }
     
     //=========================================
@@ -35,7 +36,6 @@ public:
         env1.trigger = 1;
         level = velocity * 0.15;
         frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-        std::cout << midiNoteNumber << std::endl;
     }
     //=========================================
     
@@ -74,13 +74,13 @@ public:
         
         env1.setDecay(500);
         env1.setSustain(0.8);
-        env1.setRelease(2000);
+        
         
         for(int sample = 0; sample < numSamples ; ++sample)
         {
-            double theWave = osc1.sinewave(frequency);
+            double theWave = osc1.saw(frequency);
             double theSound = env1.adsr(theWave,env1.trigger) * level;
-            double filteredSound = filter1.lores(theSound,100,0.1);
+            double filteredSound = filter1.lores(theSound,20,0.1);
             
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
             {

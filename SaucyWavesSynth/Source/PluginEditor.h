@@ -39,7 +39,9 @@ private:
     TextEditor midiMessagesBox;
     
     Slider attackSlider;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sliderTree;
+    Slider releaseSlider;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
 
     
     void logMessage (const String& m)

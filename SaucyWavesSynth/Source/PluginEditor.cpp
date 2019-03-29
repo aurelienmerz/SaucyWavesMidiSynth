@@ -25,12 +25,19 @@ keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
 //    attackSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10);
     attackSlider.addListener(this);
     addAndMakeVisible(&attackSlider);
+    
+    releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    releaseSlider.setRange(0.1f, 5000.0f);
+    releaseSlider.setValue(0.1f);
+    releaseSlider.addListener(this);
+    addAndMakeVisible(&releaseSlider);
 
     addAndMakeVisible (keyboardComponent);
     keyboardState.addListener (this);
     
 //    Linking the slider with the processor, on the parameter value "attack"
-    sliderTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"attack",attackSlider);
+    attackTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"attack",attackSlider);
+    releaseTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"release",releaseSlider);
     
 }
 
@@ -53,6 +60,7 @@ void SaucyWavesSynthAudioProcessorEditor::resized()
     // subcomponents in your editor..
     auto area = getLocalBounds();
     attackSlider.setBounds(10, 10, 40, 100);
+    releaseSlider.setBounds(30, 10, 40, 100);
     keyboardComponent.setBounds (area.removeFromBottom(80));
 }
 
@@ -61,6 +69,10 @@ void SaucyWavesSynthAudioProcessorEditor::sliderValueChanged(Slider *slider)
     if(slider == &attackSlider)
     {
         processor.attackTime = slider->getValue();
+    }
+    if(slider == &releaseSlider)
+    {
+        processor.releaseTime = slider->getValue();
     }
         
 }
