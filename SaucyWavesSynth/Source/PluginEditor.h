@@ -14,6 +14,7 @@
 #include "PluginProcessor.h"
 #include "Oscillator.h"
 #include "Envelope.h"
+#include "Filter.h"
 
 //==============================================================================
 /**
@@ -38,6 +39,7 @@ private:
     
     Oscillator oscGUI;
     Envelope envGUI;
+    Filter filterGUI;
     
     MidiKeyboardState keyboardState;            // [5]
     MidiKeyboardComponent keyboardComponent;    // [6]

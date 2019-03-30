@@ -16,8 +16,8 @@
 //==============================================================================
 /*
 */
-class Envelope    : public Component,
-public Slider::Listener
+class Envelope    : public Component//,
+//public Slider::Listener
 {
 public:
     Envelope(SaucyWavesSynthAudioProcessor& p);
@@ -25,7 +25,7 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-    void sliderValueChanged(Slider* slider) override;
+//    void sliderValueChanged(Slider* slider) override;
 
 private:
     

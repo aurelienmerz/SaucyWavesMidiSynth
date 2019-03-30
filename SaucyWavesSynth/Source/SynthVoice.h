@@ -31,6 +31,39 @@ public:
         env1.setSustain(double(*sustain));
     }
     
+    double setEnvelope()
+    {
+        return (env1.adsr(setOscType(),env1.trigger) * level);
+    }
+    
+    void getFilterParam(float* type, float* cutoff, float* res)
+    {
+        filterChoice = *type;
+        cutOff = *cutoff;
+        resonance = *res;
+    }
+    
+    double setFilter()
+    {
+        if(filterChoice == 0)
+        {
+            return filter1.lores(setEnvelope(), cutOff, resonance);
+        }
+        if(filterChoice == 1)
+        {
+            return filter1.hires(setEnvelope(), cutOff, resonance);
+        }
+        if(filterChoice == 2)
+        {
+            return filter1.bandpass(setEnvelope(), cutOff, resonance);
+        }
+        else
+        {
+            return filter1.lores(setEnvelope(), cutOff, resonance);
+        }
+        
+    }
+    
     //=========================================
     
     void getOscType(float* selection)
@@ -56,6 +89,7 @@ public:
             return osc1.sinewave(frequency);
         }
     }
+    
     
     //=========================================
     
@@ -101,12 +135,9 @@ public:
     {
         for(int sample = 0; sample < numSamples ; ++sample)
         {
-            double theSound = env1.adsr(setOscType(),env1.trigger) * level;
-            double filteredSound = filter1.lores(theSound,20,0.1);
-            
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
             {
-                outputBuffer.addSample(channel, startSample,theSound);
+                outputBuffer.addSample(channel, startSample,setFilter());
                 tailOff *= 0.99;
             }
             ++startSample;
@@ -119,6 +150,10 @@ private:
     double tailOff = 0.0;
     
     int waveSelect;
+    
+    int filterChoice;
+    float cutOff;
+    float resonance;
     maxiOsc osc1;
     maxiEnv env1;
     maxiFilter filter1;

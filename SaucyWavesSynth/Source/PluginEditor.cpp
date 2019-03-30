@@ -13,20 +13,18 @@
 
 //==============================================================================
 SaucyWavesSynthAudioProcessorEditor::SaucyWavesSynthAudioProcessorEditor (SaucyWavesSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGUI(p),envGUI(p),
+    : AudioProcessorEditor (&p), processor (p), oscGUI(p),envGUI(p),filterGUI(p),
 keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 200);
+    setSize (600, 400);
     
     addAndMakeVisible(&oscGUI);
     addAndMakeVisible(&envGUI);
+    addAndMakeVisible(&filterGUI);
     addAndMakeVisible (keyboardComponent);
     keyboardState.addListener (this);
-    
-
-    
 }
 
 SaucyWavesSynthAudioProcessorEditor::~SaucyWavesSynthAudioProcessorEditor()
@@ -51,6 +49,7 @@ void SaucyWavesSynthAudioProcessorEditor::resized()
     const int componentHeight = 200;
     
     oscGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
+    filterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     envGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     
 

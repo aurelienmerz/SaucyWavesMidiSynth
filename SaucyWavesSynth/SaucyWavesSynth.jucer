@@ -44,6 +44,8 @@
       <FILE id="aGAm2f" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="iSmJCP" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
       <FILE id="BQMIIQ" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
+      <FILE id="uBcVyq" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
+      <FILE id="yj6HvK" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
