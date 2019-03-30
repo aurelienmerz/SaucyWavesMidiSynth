@@ -56,6 +56,7 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    void updateFilter();
     
     float attackTime;
     float releaseTime;
@@ -66,6 +67,8 @@ public:
 private:
     
     Synthesiser mySynth;
+    dsp::ProcessorDuplicator<dsp::StateVariableFilter::Filter<float>,
+                             dsp::StateVariableFilter::Parameters<float>> stateVariableFilter;
 
     SynthVoice *myVoice;
     double lastSampleRate;

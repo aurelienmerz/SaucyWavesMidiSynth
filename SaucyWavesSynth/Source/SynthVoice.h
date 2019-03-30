@@ -64,6 +64,25 @@ public:
         
     }
     
+    void updateFilter()
+    {
+        if (filterChoice == 0)
+        {
+            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::lowPass;
+            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
+        }
+        if (filterChoice == 1)
+        {
+            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::highPass;
+            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
+        }
+        if (filterChoice == 2)
+        {
+            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::bandPass;
+            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
+        }
+    }
+    
     //=========================================
     
     void getOscType(float* selection)
@@ -129,6 +148,18 @@ public:
         
     }
     
+    void initFilter()
+    {
+        dsp::ProcessSpec spec;
+        spec.sampleRate = 44100;
+        spec.maximumBlockSize = 512;
+        spec.numChannels = 2;
+        
+        stateVariableFilter.reset();
+        //    updateFilter();
+        stateVariableFilter.prepare(spec);
+    }
+    
     //=========================================
     
     void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
@@ -142,12 +173,18 @@ public:
             }
             ++startSample;
         }
+//        dsp::AudioBlock<float> block (outputBuffer);
+//        updateFilter();
+//        stateVariableFilter.process(dsp::ProcessContextReplacing<float>(block));
         
     }
 private:
     float level = 0.0;
     float frequency = 0.0;
     double tailOff = 0.0;
+    
+    dsp::ProcessorDuplicator<dsp::StateVariableFilter::Filter<float>,
+    dsp::StateVariableFilter::Parameters<float>> stateVariableFilter;
     
     int waveSelect;
     

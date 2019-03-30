@@ -24,9 +24,10 @@ processor(p)
     filterTypeVal = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"filterType",filterMenu);
     
     filterCutOff.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    filterCutOff.setRange(20.0, 10000.0);
-    filterCutOff.setValue(400.0);
+    filterCutOff.setRange(20.0, 20000.0);
+    filterCutOff.setValue(600.0f);
     filterCutOff.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    filterCutOff.setPopupDisplayEnabled(true, true, this);
     addAndMakeVisible(&filterCutOff);
     filterVal = new AudioProcessorValueTreeState::SliderAttachment(processor.tree, "filterCutOff",filterCutOff);
     filterCutOff.setSkewFactorFromMidPoint(1000.0);
@@ -35,6 +36,7 @@ processor(p)
     filterRes.setRange(1, 5);
     filterRes.setValue(1);
     filterRes.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    filterRes.setPopupDisplayEnabled(true, true, this);
     addAndMakeVisible(&filterRes);
     resVal = new AudioProcessorValueTreeState::SliderAttachment(processor.tree, "filterRes",filterRes);
 }

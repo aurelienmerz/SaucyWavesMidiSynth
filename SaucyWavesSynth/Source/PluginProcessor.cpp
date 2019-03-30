@@ -32,7 +32,7 @@ tree(*this,nullptr)
     NormalisableRange<float> sustainParam(0.1f, 5000.0f);
     NormalisableRange<float> waveTypeParam(0,2);
     NormalisableRange<float> filterParam(20.0f,10000.0f);
-    NormalisableRange<float> filterResParam(1,5);
+    NormalisableRange<float> filterResParam(1.0f,5.0f);
     NormalisableRange<float> filterTypeParam(0,2);
     
     tree.createAndAddParameter("attack", "Attack", "Attack", attackParam, 0.1f, nullptr, nullptr);
@@ -129,6 +129,17 @@ void SaucyWavesSynthAudioProcessor::prepareToPlay (double sampleRate, int sample
     // initialisation that you need..
     ignoreUnused(samplesPerBlock);
     lastSampleRate = sampleRate;
+    
+    dsp::ProcessSpec spec;
+    spec.sampleRate = sampleRate;
+    spec.maximumBlockSize = samplesPerBlock;
+    spec.numChannels = getMainBusNumOutputChannels();
+    
+    stateVariableFilter.reset();
+//    updateFilter();
+    stateVariableFilter.prepare(spec);
+
+    
     mySynth.setCurrentPlaybackSampleRate(lastSampleRate);
 }
 
@@ -137,6 +148,29 @@ void SaucyWavesSynthAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
+
+//void SaucyWavesSynthAudioProcessor::updateFilter()
+//{
+//    int menuChoice = (*tree.getRawParameterValue("filterType"));
+//    int cutoff = (*tree.getRawParameterValue("filterCutOff"));
+//    int res = (*tree.getRawParameterValue("filterRes"));
+//
+//    if (menuChoice == 0)
+//    {
+//        stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::lowPass;
+//        stateVariableFilter.state->setCutOffFrequency(lastSampleRate, cutoff,res);
+//    }
+//    if (menuChoice == 1)
+//    {
+//        stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::highPass;
+//        stateVariableFilter.state->setCutOffFrequency(lastSampleRate, cutoff,res);
+//    }
+//    if (menuChoice == 2)
+//    {
+//        stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::bandPass;
+//        stateVariableFilter.state->setCutOffFrequency(lastSampleRate, cutoff,res);
+//    }
+//}
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool SaucyWavesSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
@@ -185,6 +219,10 @@ void SaucyWavesSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mi
         }
     }
     buffer.clear();
+    dsp::AudioBlock<float> block (buffer);
+//    updateFilter();
+    stateVariableFilter.process(dsp::ProcessContextReplacing<float>(block));
+    
     mySynth.renderNextBlock(buffer, midiMessages,0,buffer.getNumSamples());
     
     // In case we have more outputs than inputs, this code clears any output

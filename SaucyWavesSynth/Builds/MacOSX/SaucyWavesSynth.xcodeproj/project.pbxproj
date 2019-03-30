@@ -201,6 +201,10 @@
 			isa = PBXBuildFile;
 			fileRef = 90A4CF518D2B0BBEE18094FF;
 		};
+		A36C442F7EC927651E4EE309 = {
+			isa = PBXBuildFile;
+			fileRef = D7A1F9FF32ED5C62EBFFCD5C;
+		};
 		4DCB899B16CC95BACE7B8B60 = {
 			isa = PBXBuildFile;
 			fileRef = 9E23B2F3959F2558FEB4E5CA;
@@ -375,6 +379,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r";
 			sourceTree = "SOURCE_ROOT";
 		};
+		4591A7E5589C844A820292B3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_dsp";
+			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_dsp";
+			sourceTree = "<absolute>";
+		};
 		53267B8855AF3FD20AA08608 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -424,6 +435,13 @@
 			path = ../../Source/SynthVoice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7483D21415123DB08B1D0D1D = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_opengl";
+			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_opengl";
+			sourceTree = "<absolute>";
+		};
 		7E83B46522AC6C4D705FF0BD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -436,6 +454,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = sineTable.h;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/sineTable.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		8AA363F701EACD6DF0B72C1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_basics.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		BF62FA106FFD65AB2CCB9839 = {
@@ -452,32 +477,11 @@
 			path = SaucyWavesSynth.component;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
-		7483D21415123DB08B1D0D1D = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_opengl";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_opengl";
-			sourceTree = "<absolute>";
-		};
 		76EE95367AE78BB975B21010 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = fft.cpp;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/fft.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		8AA363F701EACD6DF0B72C1E = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		90A4CF518D2B0BBEE18094FF = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_data_structures.mm";
-			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		A3C246502EA42EDAC9EE672C = {
@@ -548,6 +552,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = JuceHeader.h;
 			path = ../../JuceLibraryCode/JuceHeader.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		90A4CF518D2B0BBEE18094FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_data_structures.mm";
+			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		92AADCB36F5343F30186B702 = {
@@ -737,6 +748,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		D7A1F9FF32ED5C62EBFFCD5C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_dsp.mm";
+			path = "../../JuceLibraryCode/include_juce_dsp.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		DA1BBB446390F9E07F0ED67F = {
@@ -964,6 +982,7 @@
 				E23033BA84D81EA67404C736,
 				2E8048B10771A2902A07090F,
 				F3F84F7EF0440CE61DED47FF,
+				4591A7E5589C844A820292B3,
 				5AFB9AA181E67D63D57F10FB,
 				D0B60722F5D4E927F34DFF51,
 				53267B8855AF3FD20AA08608,
@@ -994,6 +1013,7 @@
 				6487C07ED8BB256D0966BD17,
 				AFF613FEB38681B92CEC5355,
 				90A4CF518D2B0BBEE18094FF,
+				D7A1F9FF32ED5C62EBFFCD5C,
 				9E23B2F3959F2558FEB4E5CA,
 				ACAF8F3664AE6EC487FB0F67,
 				8AA363F701EACD6DF0B72C1E,
@@ -1833,6 +1853,7 @@
 				3FBBA90CA149509CD7C1F691,
 				4ECAE0B26A5FA8EBE3B6B7A4,
 				F7704EC5693655D22204812C,
+				A36C442F7EC927651E4EE309,
 				4DCB899B16CC95BACE7B8B60,
 				ECC22E7BE6376010A5B4DC83,
 				B958A2230659C029C7D38244,
