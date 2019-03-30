@@ -35,6 +35,14 @@ Oscillator::~Oscillator()
 
 void Oscillator::paint (Graphics& g)
 {
+    Rectangle<int> titleArea (0,10, getWidth(),20);
+    g.fillAll(Colours::black);
+    g.setColour(Colours::white);
+    g.drawText("OSC 1", titleArea, Justification::centredTop);
+    
+    Rectangle<float> area (25,25,150,150);
+    g.setColour(Colours::yellow);
+    g.drawRoundedRectangle(area,20.0f, 2.0f);
 
 }
 

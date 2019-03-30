@@ -25,7 +25,7 @@ processor(p)
     
     filterCutOff.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     filterCutOff.setRange(20.0, 10000.0);
-    filterCutOff.setValue(440.0);
+    filterCutOff.setValue(400.0);
     filterCutOff.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(&filterCutOff);
     filterVal = new AudioProcessorValueTreeState::SliderAttachment(processor.tree, "filterCutOff",filterCutOff);
@@ -57,7 +57,7 @@ void Filter::paint (Graphics& g)
 
 void Filter::resized()
 {
-    Rectangle<int> area = getLocalBounds();
+    Rectangle<int> area = getLocalBounds().reduced(40);
     filterMenu.setBounds(area.removeFromTop(20));
     filterCutOff.setBounds(30, 100, 70, 70);
     filterRes.setBounds(100, 100, 70, 70);

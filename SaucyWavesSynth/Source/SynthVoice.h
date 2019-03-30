@@ -33,7 +33,7 @@ public:
     
     double setEnvelope()
     {
-        return (env1.adsr(setOscType(),env1.trigger) * level);
+        return (env1.adsr(setOscType(),env1.trigger));
     }
     
     void getFilterParam(float* type, float* cutoff, float* res)
@@ -137,7 +137,7 @@ public:
         {
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
             {
-                outputBuffer.addSample(channel, startSample,setFilter());
+                outputBuffer.addSample(channel, startSample,setFilter() * 0.3f);
                 tailOff *= 0.99;
             }
             ++startSample;

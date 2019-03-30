@@ -57,7 +57,7 @@ void Envelope::paint (Graphics& g)
     Rectangle<int> titleArea (0,10,getWidth(),20);
     g.fillAll (Colours::black);   // clear the background
     g.setColour(Colours::white);
-    g.drawText("Filter",titleArea, Justification::centredTop);
+    g.drawText("Envelope",titleArea, Justification::centredTop);
     
     g.drawText("A",53,150,20,20,Justification::centredTop);
     g.drawText("D",77,150,20,20,Justification::centredTop);
