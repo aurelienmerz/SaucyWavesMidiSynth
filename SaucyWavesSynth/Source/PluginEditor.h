@@ -13,14 +13,14 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "Oscillator.h"
+#include "Envelope.h"
 
 //==============================================================================
 /**
 */
 class SaucyWavesSynthAudioProcessorEditor  : public AudioProcessorEditor,
 private MidiInputCallback,
-private MidiKeyboardStateListener,
-public Slider::Listener
+private MidiKeyboardStateListener
 {
 public:
     SaucyWavesSynthAudioProcessorEditor (SaucyWavesSynthAudioProcessor&);
@@ -29,7 +29,7 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
-    void sliderValueChanged(Slider* slider) override;
+
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -37,20 +37,11 @@ private:
     SaucyWavesSynthAudioProcessor& processor;
     
     Oscillator oscGUI;
+    Envelope envGUI;
     
     MidiKeyboardState keyboardState;            // [5]
     MidiKeyboardComponent keyboardComponent;    // [6]
     TextEditor midiMessagesBox;
-    
-    Slider attackSlider;
-    Slider releaseSlider;
-    Slider decaySlider;
-    Slider sustainSlider;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
-
     
     void logMessage (const String& m)
     {

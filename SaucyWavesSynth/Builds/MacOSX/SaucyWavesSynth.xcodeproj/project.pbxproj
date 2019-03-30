@@ -129,6 +129,10 @@
 			isa = PBXBuildFile;
 			fileRef = 07BCD861B408CCF482069B43;
 		};
+		E94C0FD86CE732661020E257 = {
+			isa = PBXBuildFile;
+			fileRef = 85DBE7D28BCF9B2D7BA62A08;
+		};
 		E2F005583190387F0EC59834 = {
 			isa = PBXBuildFile;
 			fileRef = 92AADCB36F5343F30186B702;
@@ -381,13 +385,6 @@
 			path = ../../../../../../Desktop/DEV/Maximilian/main.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		6487C07ED8BB256D0966BD17 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_core.mm";
-			path = "../../JuceLibraryCode/include_juce_core.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
 		6745AD1319BDD4C4465C4BFB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -402,12 +399,12 @@
 			path = ../../Source/SynthVoice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		7E83B46522AC6C4D705FF0BD = {
+		7483D21415123DB08B1D0D1D = {
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_extra.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
-			sourceTree = "SOURCE_ROOT";
+			lastKnownFileType = file;
+			name = "juce_opengl";
+			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_opengl";
+			sourceTree = "<absolute>";
 		};
 		84C6824BD985411DDA86203A = {
 			isa = PBXFileReference;
@@ -430,32 +427,11 @@
 			path = SaucyWavesSynth.component;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
-		7483D21415123DB08B1D0D1D = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_opengl";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_opengl";
-			sourceTree = "<absolute>";
-		};
 		76EE95367AE78BB975B21010 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = fft.cpp;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/fft.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		8AA363F701EACD6DF0B72C1E = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		90A4CF518D2B0BBEE18094FF = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_data_structures.mm";
-			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		A3C246502EA42EDAC9EE672C = {
@@ -472,6 +448,13 @@
 			path = libSaucyWavesSynth.a;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
+		6487C07ED8BB256D0966BD17 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_core.mm";
+			path = "../../JuceLibraryCode/include_juce_core.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		7973B5DD53AC040C58EED514 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -486,11 +469,32 @@
 			path = System/Library/Frameworks/QuartzCore.framework;
 			sourceTree = SDKROOT;
 		};
+		7E83B46522AC6C4D705FF0BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_extra.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		81AC7EE89ABFB8046829AEBE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = maxiAtoms.h;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/maxiAtoms.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		82AE537E016E80E62AE0B59E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Envelope.h;
+			path = ../../Source/Envelope.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		85DBE7D28BCF9B2D7BA62A08 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Envelope.cpp;
+			path = ../../Source/Envelope.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		87C8720C21B32D9097DB33E4 = {
@@ -507,11 +511,25 @@
 			path = ../../Source/SynthSound.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		8AA363F701EACD6DF0B72C1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_basics.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		8D3C0DCACBF21E40C3887D11 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = JuceHeader.h;
 			path = ../../JuceLibraryCode/JuceHeader.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		90A4CF518D2B0BBEE18094FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_data_structures.mm";
+			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		92AADCB36F5343F30186B702 = {
@@ -900,6 +918,8 @@
 				7973B5DD53AC040C58EED514,
 				07BCD861B408CCF482069B43,
 				E699118F35D6E5741DFA9F28,
+				85DBE7D28BCF9B2D7BA62A08,
+				82AE537E016E80E62AE0B59E,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -1780,6 +1800,7 @@
 				A207B0C437E143C8C7ECD391,
 				05D0EA9D530F2875D94E4707,
 				FF47455A65CC84DF9071C7E3,
+				E94C0FD86CE732661020E257,
 				E2F005583190387F0EC59834,
 				49ED8B633E107A4EE18CC9E0,
 				EB0266535B3570B91ADE6427,
