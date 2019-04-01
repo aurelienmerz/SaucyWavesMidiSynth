@@ -1,10 +1,10 @@
 # Saucy Waves Synth
 
 ## Getting Started
-This guide assumes you have a machine equipped with XCode 10.1 or higher, Projucer from JUCE and Maximilian framework.
+This guide assumes you have a machine equipped with XCode 10.1 or higher, Projucer from JUCE 5.4.3 or latest and Maximilian framework https://github.com/micknoise/Maximilian.
 
 ## Installation
-
+Download repo, open the .jucer file, add the Maximilian lib to source and click save. Xcode will open automatically. 
 
 
 
