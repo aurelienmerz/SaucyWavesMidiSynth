@@ -253,13 +253,6 @@
 			path = ../../../../../../Desktop/DEV/Maximilian/maximilian.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		0A92D1169FB78D71F9C18231 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_utils";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_utils";
-			sourceTree = "<absolute>";
-		};
 		0E6B796E4D4B3718E66D204C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -272,6 +265,20 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = BinaryData.h;
 			path = ../../JuceLibraryCode/BinaryData.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		170D33521F78CC5C06540E20 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_gui_extra";
+			path = "../../JuceLibraryCode/modules/juce_gui_extra";
+			sourceTree = "SOURCE_ROOT";
+		};
+		1B0F59C2F2AC1F8DA5BA0A9B = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_graphics";
+			path = "../../JuceLibraryCode/modules/juce_graphics";
 			sourceTree = "SOURCE_ROOT";
 		};
 		1F02325FAAF601EC3E95505D = {
@@ -287,6 +294,13 @@
 			name = CoreMIDI.framework;
 			path = System/Library/Frameworks/CoreMIDI.framework;
 			sourceTree = SDKROOT;
+		};
+		27BDF85A1923CB0D0B57A043 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_basics";
+			path = "../../JuceLibraryCode/modules/juce_audio_basics";
+			sourceTree = "SOURCE_ROOT";
 		};
 		284FB74D0107AD8B7ADE0740 = {
 			isa = PBXFileReference;
@@ -323,20 +337,6 @@
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		2E8048B10771A2902A07090F = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_cryptography";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_cryptography";
-			sourceTree = "<absolute>";
-		};
-		2F825A8C57FB0EFDC34D72B7 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_devices";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_devices";
-			sourceTree = "<absolute>";
-		};
 		3150F689D494675D404EA739 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -372,6 +372,13 @@
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/maxiMFCC.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		40BDD46B688D554671E2B20E = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_events";
+			path = "../../JuceLibraryCode/modules/juce_events";
+			sourceTree = "SOURCE_ROOT";
+		};
 		41F20E869BA77E08B146ED5D = {
 			isa = PBXFileReference;
 			lastKnownFileType = file.r;
@@ -379,26 +386,26 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r";
 			sourceTree = "SOURCE_ROOT";
 		};
-		4591A7E5589C844A820292B3 = {
+		47A362A95B84D25383A68742 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_dsp";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_dsp";
-			sourceTree = "<absolute>";
+			name = "juce_audio_devices";
+			path = "../../JuceLibraryCode/modules/juce_audio_devices";
+			sourceTree = "SOURCE_ROOT";
 		};
-		53267B8855AF3FD20AA08608 = {
+		5B6049976E3AF997DDAABB26 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_gui_basics";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_gui_basics";
-			sourceTree = "<absolute>";
+			name = "juce_data_structures";
+			path = "../../JuceLibraryCode/modules/juce_data_structures";
+			sourceTree = "SOURCE_ROOT";
 		};
-		5AFB9AA181E67D63D57F10FB = {
+		622BC2933EBC0756FC635BF9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_events";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_events";
-			sourceTree = "<absolute>";
+			name = "juce_cryptography";
+			path = "../../JuceLibraryCode/modules/juce_cryptography";
+			sourceTree = "SOURCE_ROOT";
 		};
 		62DA121CBE469F42B5EC7E39 = {
 			isa = PBXFileReference;
@@ -435,18 +442,18 @@
 			path = ../../Source/SynthVoice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		7483D21415123DB08B1D0D1D = {
+		780BBE5A2DCE9856BD4FD69B = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_opengl";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_opengl";
-			sourceTree = "<absolute>";
+			name = "juce_core";
+			path = "../../JuceLibraryCode/modules/juce_core";
+			sourceTree = "SOURCE_ROOT";
 		};
-		7E83B46522AC6C4D705FF0BD = {
+		82A8AEF5616D5F546514069D = {
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_extra.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			lastKnownFileType = file;
+			name = "juce_audio_processors";
+			path = "../../JuceLibraryCode/modules/juce_audio_processors";
 			sourceTree = "SOURCE_ROOT";
 		};
 		84C6824BD985411DDA86203A = {
@@ -454,13 +461,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = sineTable.h;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/sineTable.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		8AA363F701EACD6DF0B72C1E = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		BF62FA106FFD65AB2CCB9839 = {
@@ -482,6 +482,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = fft.cpp;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/fft.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		7B2D09A5AF13B707CBB827CA = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_opengl";
+			path = "../../JuceLibraryCode/modules/juce_opengl";
 			sourceTree = "SOURCE_ROOT";
 		};
 		A3C246502EA42EDAC9EE672C = {
@@ -512,6 +519,13 @@
 			path = System/Library/Frameworks/QuartzCore.framework;
 			sourceTree = SDKROOT;
 		};
+		7E83B46522AC6C4D705FF0BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_extra.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		81AC7EE89ABFB8046829AEBE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -533,18 +547,18 @@
 			path = ../../Source/Envelope.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		87C8720C21B32D9097DB33E4 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_extra";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_gui_extra";
-			sourceTree = "<absolute>";
-		};
 		89A9E278D5F6FD559EDF00AB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = SynthSound.h;
 			path = ../../Source/SynthSound.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		8AA363F701EACD6DF0B72C1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_basics.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		8D3C0DCACBF21E40C3887D11 = {
@@ -589,13 +603,6 @@
 			path = "../../JuceLibraryCode/include_juce_events.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		A11F2D2B3896A26381C5B5E3 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_plugin_client";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client";
-			sourceTree = "<absolute>";
-		};
 		A1259A9946A52E26BAD95030 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -617,12 +624,19 @@
 			path = System/Library/Frameworks/CoreAudioKit.framework;
 			sourceTree = SDKROOT;
 		};
-		A64FF73EFE330A78C958AA9F = {
+		A47D37A5802A1673C1FD36C4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_audio_processors";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors";
-			sourceTree = "<absolute>";
+			name = "juce_audio_plugin_client";
+			path = "../../JuceLibraryCode/modules/juce_audio_plugin_client";
+			sourceTree = "SOURCE_ROOT";
+		};
+		AA63C48943D167F3F26E43A5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_utils";
+			path = "../../JuceLibraryCode/modules/juce_audio_utils";
+			sourceTree = "SOURCE_ROOT";
 		};
 		ACAF8F3664AE6EC487FB0F67 = {
 			isa = PBXFileReference;
@@ -652,12 +666,12 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
-		B60FF1FB5D9E67C14D598B5B = {
+		B6A82C8728A70C506F4D7B7B = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_audio_basics";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_basics";
-			sourceTree = "<absolute>";
+			name = "juce_audio_formats";
+			path = "../../JuceLibraryCode/modules/juce_audio_formats";
+			sourceTree = "SOURCE_ROOT";
 		};
 		B8ACFBB27661285710AC46B0 = {
 			isa = PBXFileReference;
@@ -708,26 +722,12 @@
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/maxiMFCC.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		CD9456507A1AF7B559529D52 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_formats";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_formats";
-			sourceTree = "<absolute>";
-		};
 		CF8E3F95FC9E8A4E9FA7A41B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = maxiFFT.cpp;
 			path = ../../../../../../Desktop/DEV/Maximilian/libs/maxiFFT.cpp;
 			sourceTree = "SOURCE_ROOT";
-		};
-		D0B60722F5D4E927F34DFF51 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_graphics";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_graphics";
-			sourceTree = "<absolute>";
 		};
 		D2E6A747E9A96B69752435F0 = {
 			isa = PBXFileReference;
@@ -785,12 +785,19 @@
 			path = ../../../../../../Desktop/DEV/Maximilian/RtError.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		E23033BA84D81EA67404C736 = {
+		DF40B16BDB4AC1316AFF0690 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_core";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_core";
-			sourceTree = "<absolute>";
+			name = "juce_gui_basics";
+			path = "../../JuceLibraryCode/modules/juce_gui_basics";
+			sourceTree = "SOURCE_ROOT";
+		};
+		E1DF2E30DB0843AC69758218 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_dsp";
+			path = "../../JuceLibraryCode/modules/juce_dsp";
+			sourceTree = "SOURCE_ROOT";
 		};
 		E2724BB46C9DA50FEF265D2E = {
 			isa = PBXFileReference;
@@ -861,13 +868,6 @@
 			name = AudioToolbox.framework;
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
-		};
-		F3F84F7EF0440CE61DED47FF = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_data_structures";
-			path = "/Users/aurelienmerz/Desktop/JUCE/modules/juce_data_structures";
-			sourceTree = "<absolute>";
 		};
 		F5B19FE1E202C8166B660C33 = {
 			isa = PBXFileReference;
@@ -973,21 +973,21 @@
 		8E55449D0F09762B2200574C = {
 			isa = PBXGroup;
 			children = (
-				B60FF1FB5D9E67C14D598B5B,
-				2F825A8C57FB0EFDC34D72B7,
-				CD9456507A1AF7B559529D52,
-				A11F2D2B3896A26381C5B5E3,
-				A64FF73EFE330A78C958AA9F,
-				0A92D1169FB78D71F9C18231,
-				E23033BA84D81EA67404C736,
-				2E8048B10771A2902A07090F,
-				F3F84F7EF0440CE61DED47FF,
-				4591A7E5589C844A820292B3,
-				5AFB9AA181E67D63D57F10FB,
-				D0B60722F5D4E927F34DFF51,
-				53267B8855AF3FD20AA08608,
-				87C8720C21B32D9097DB33E4,
-				7483D21415123DB08B1D0D1D,
+				27BDF85A1923CB0D0B57A043,
+				47A362A95B84D25383A68742,
+				B6A82C8728A70C506F4D7B7B,
+				A47D37A5802A1673C1FD36C4,
+				82A8AEF5616D5F546514069D,
+				AA63C48943D167F3F26E43A5,
+				780BBE5A2DCE9856BD4FD69B,
+				622BC2933EBC0756FC635BF9,
+				5B6049976E3AF997DDAABB26,
+				E1DF2E30DB0843AC69758218,
+				40BDD46B688D554671E2B20E,
+				1B0F59C2F2AC1F8DA5BA0A9B,
+				DF40B16BDB4AC1316AFF0690,
+				170D33521F78CC5C06540E20,
+				7B2D09A5AF13B707CBB827CA,
 			);
 			name = "JUCE Modules";
 			sourceTree = "<group>";
@@ -1125,11 +1125,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
+					"../../JuceLibraryCode/modules",
 					"/Users/aurelienmerz/Desktop/DEV/Maximilian",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-VST3.plist;
@@ -1138,7 +1138,7 @@
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-bundle -lSaucyWavesSynth";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst3;
@@ -1177,10 +1177,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-VST3.plist;
@@ -1190,7 +1190,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-bundle -lSaucyWavesSynth";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst3;
@@ -1228,11 +1228,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
+					"../../JuceLibraryCode/modules",
 					"/Users/aurelienmerz/Desktop/DEV/Maximilian",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-AU.plist;
@@ -1242,7 +1242,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-bundle -lSaucyWavesSynth";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component;
@@ -1281,10 +1281,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-AU.plist;
@@ -1295,7 +1295,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-bundle -lSaucyWavesSynth";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component;
@@ -1330,18 +1330,18 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
+					"../../JuceLibraryCode/modules",
 					"/Users/aurelienmerz/Desktop/DEV/Maximilian",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
 				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-lSaucyWavesSynth";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 			};
@@ -1376,10 +1376,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
@@ -1387,7 +1387,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-lSaucyWavesSynth";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				USE_HEADERMAP = NO;
 			};
@@ -1422,16 +1422,16 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
+					"../../JuceLibraryCode/modules",
 					"/Users/aurelienmerz/Desktop/DEV/Maximilian",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
@@ -1468,16 +1468,16 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"/Users/aurelienmerz/Desktop/JUCE/modules",
-					"/Users/aurelienmerz/Desktop/JUCE/modules/juce_audio_plugin_client",
+					"../../JuceLibraryCode/modules",
+					"../../JuceLibraryCode/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SaucyWavesSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DejaNewPlugins.SaucyWavesSynth;
 				PRODUCT_NAME = "SaucyWavesSynth";
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
@@ -1878,7 +1878,7 @@
 		894B319E8912D3E9DDFCE5C7 = {
 			isa = PBXProject;
 			buildConfigurationList = 12CB08CD02AC3777A248A1EE;
-			attributes = { LastUpgradeCheck = 0930; ORGANIZATIONNAME = ""; TargetAttributes = { 7DC99BDFCC3C7C7B6F8172BE = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };52FE610D60DF841A66243763 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };236A5E3F7B11A350F602B0CF = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };20E59AD1119C5BD94B022FD9 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };9501857B1B943DC00484E157 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 0930; ORGANIZATIONNAME = "Deja-New Plugins"; TargetAttributes = { 7DC99BDFCC3C7C7B6F8172BE = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };52FE610D60DF841A66243763 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };236A5E3F7B11A350F602B0CF = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };20E59AD1119C5BD94B022FD9 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };9501857B1B943DC00484E157 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = F5D0BD786AEFE2217527FBD3;

@@ -8,7 +8,7 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.SaucyWavesSynth</string>
+    <string>com.DejaNewPlugins.SaucyWavesSynth</string>
     <key>CFBundleName</key>
     <string>SaucyWavesSynth</string>
     <key>CFBundleDisplayName</key>
@@ -29,7 +29,7 @@
     <array>
       <dict>
         <key>name</key>
-        <string>yourcompany: SaucyWavesSynth</string>
+        <string>Deja-New Plugins: SaucyWavesSynth</string>
         <key>description</key>
         <string>SaucyWavesSynth</string>
         <key>factoryFunction</key>

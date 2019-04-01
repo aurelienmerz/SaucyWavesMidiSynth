@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>SaucyWavesSynth</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.SaucyWavesSynth</string>
+	<string>com.DejaNewPlugins.SaucyWavesSynth</string>
 	<key>CFBundleName</key>
 	<string>SaucyWavesSynth</string>
 	<key>CFBundlePackageType</key>
