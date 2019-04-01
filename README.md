@@ -1,5 +1,10 @@
 # SaucyWavesMidiSynth
 
+# Getting Started
+This guide assumes you have a machine equipped with XCode 10.1 or higher, Projucer from JUCE and Maximilian framework
+# Installation
+
+
 ## Plugin usage:
 1.  Connect your midi controller to your computer via USB or Bluetooth (ROLI)
 2.  Open your DAW
