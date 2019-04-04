@@ -17,26 +17,26 @@ processor(p)
 {
     setSize(200, 200);
         attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        attackSlider.setRange(0.1f, 5000.0f);
-        attackSlider.setValue(0.1f);
+        attackSlider.setRange(1.0f, 5000.0f);
+        attackSlider.setValue(1.0f);
 //        attackSlider.addListener(this);
         addAndMakeVisible(&attackSlider);
     
         releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        releaseSlider.setRange(0.1f, 5000.0f);
-        releaseSlider.setValue(0.1f);
+        releaseSlider.setRange(1.0f, 5000.0f);
+        releaseSlider.setValue(1.0f);
 //        releaseSlider.addListener(this);
         addAndMakeVisible(&releaseSlider);
     
         sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        sustainSlider.setRange(0.1f, 5000.0f);
-        sustainSlider.setValue(0.1f);
+        sustainSlider.setRange(1.0f, 5000.0f);
+        sustainSlider.setValue(1.0f);
 //        sustainSlider.addListener(this);
         addAndMakeVisible(&sustainSlider);
     
         decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        decaySlider.setRange(0.1f, 5000.0f);
-        decaySlider.setValue(0.1f);
+        decaySlider.setRange(1.0f, 5000.0f);
+        decaySlider.setValue(1.0f);
 //        decaySlider.addListener(this);
         addAndMakeVisible(&decaySlider);
     
@@ -55,7 +55,9 @@ Envelope::~Envelope()
 void Envelope::paint (Graphics& g)
 {
     Rectangle<int> titleArea (0,10,getWidth(),20);
-    g.fillAll (Colours::black);   // clear the background
+    auto bckgrnd = Colour();
+    g.fillAll (bckgrnd);   // clear the background
+
     g.setColour(Colours::white);
     g.drawText("Envelope",titleArea, Justification::centredTop);
     

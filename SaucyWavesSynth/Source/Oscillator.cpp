@@ -36,7 +36,10 @@ Oscillator::~Oscillator()
 void Oscillator::paint (Graphics& g)
 {
     Rectangle<int> titleArea (0,10, getWidth(),20);
-    g.fillAll(Colours::black);
+    auto bckgrnd = Colour();
+    g.fillAll (bckgrnd);   // clear the background
+
+//    g.fillAll(Colours::black);
     g.setColour(Colours::white);
     g.drawText("OSC 1", titleArea, Justification::centredTop);
     

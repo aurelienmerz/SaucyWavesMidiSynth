@@ -15,6 +15,7 @@
 Filter::Filter(SaucyWavesSynthAudioProcessor& p):
 processor(p)
 {
+
     setSize(200, 200);
     filterMenu.addItem("Low-pass", 1);
     filterMenu.addItem("High-pass", 2);
@@ -23,8 +24,8 @@ processor(p)
     addAndMakeVisible(&filterMenu);
     filterTypeVal = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"filterType",filterMenu);
     
-    filterCutOff.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    filterCutOff.setRange(20.0, 20000.0);
+    filterCutOff.setSliderStyle(Slider::Rotary);
+    filterCutOff.setRange(40.0, 20000.0);
     filterCutOff.setValue(600.0f);
     filterCutOff.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     filterCutOff.setPopupDisplayEnabled(true, true, this);
@@ -32,7 +33,7 @@ processor(p)
     filterVal = new AudioProcessorValueTreeState::SliderAttachment(processor.tree, "filterCutOff",filterCutOff);
     filterCutOff.setSkewFactorFromMidPoint(1000.0);
     
-    filterRes.setSliderStyle(Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    filterRes.setSliderStyle(Slider::Rotary);
     filterRes.setRange(1, 5);
     filterRes.setValue(1);
     filterRes.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -45,10 +46,18 @@ Filter::~Filter()
 {
 }
 
+
+
 void Filter::paint (Graphics& g)
 {
     Rectangle<int> titleArea (0,10,getWidth(),20);
-    g.fillAll (Colours::black);   // clear the background
+    auto bckgrnd = Colour();
+    g.fillAll (bckgrnd);   // clear the background
+//    auto purpleHue = Colours::purple.getHue();
+//    g.fillAll (Colour::fromHSV (purpleHue, 0.5f, 0.5f, 1.0f));
+//    auto gradient = ColourGradient()
+//    g.setGradientFill(ColourGradient)
+
     g.setColour(Colours::white);
     g.drawText("Filter",titleArea, Justification::centredTop);
     
