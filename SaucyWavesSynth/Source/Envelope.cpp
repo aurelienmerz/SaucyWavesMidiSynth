@@ -16,10 +16,14 @@ Envelope::Envelope(SaucyWavesSynthAudioProcessor& p):
 processor(p)
 {
     setSize(200, 200);
-        attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+//    getLookAndFeel().setColour(Slider::thumbColourId, Colours::orange);
+//    getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
+    
+    attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
         attackSlider.setRange(1.0f, 5000.0f);
         attackSlider.setValue(1.0f);
 //        attackSlider.addListener(this);
+//    attackSlider.setLookAndFeel(&lookAndFeel);
         addAndMakeVisible(&attackSlider);
     
         releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
@@ -50,16 +54,17 @@ processor(p)
 
 Envelope::~Envelope()
 {
+//    setLookAndFeel (nullptr);
 }
 
 void Envelope::paint (Graphics& g)
 {
-    Rectangle<int> titleArea (0,10,getWidth(),20);
+    Rectangle<int> titleArea (0,10,getWidth(),25);
     auto bckgrnd = Colour();
     g.fillAll (bckgrnd);   // clear the background
 
     g.setColour(Colours::white);
-    g.drawText("Envelope",titleArea, Justification::centredTop);
+    g.drawText("ADSR",titleArea, Justification::centredTop);
     
     g.drawText("A",53,150,20,20,Justification::centredTop);
     g.drawText("D",77,150,20,20,Justification::centredTop);
@@ -67,8 +72,9 @@ void Envelope::paint (Graphics& g)
     g.drawText("R",128,150,20,20,Justification::centredTop);
     
     Rectangle<float> area (25,25,150,150);
-    g.setColour(Colours::yellow);
-    g.drawRoundedRectangle(area, 20.0f, 2.0f);
+    auto colour = Colour(84, 109, 229);
+    g.setColour(Colours::white);
+    g.drawRoundedRectangle(area, 20.0f, 3.0f);
 }
 
 void Envelope::resized()
@@ -77,10 +83,10 @@ void Envelope::resized()
     int sliderWidth = 25;
     int sliderHeight = 175;
     
-    attackSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(10));
-    decaySlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(10));
-    sustainSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(10));
-    releaseSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(10));
+    attackSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
+    decaySlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
+    sustainSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
+    releaseSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
 
 }
 

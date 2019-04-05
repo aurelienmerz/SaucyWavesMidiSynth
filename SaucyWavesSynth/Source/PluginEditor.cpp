@@ -20,6 +20,9 @@ keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
     // editor's size to whatever you need it to be.
     setSize (600, 200);
     setLookAndFeel(&filterGUI);
+    getLookAndFeel().setColour(Slider::thumbColourId, Colours::white);
+    getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
+    
     addAndMakeVisible(&oscGUI);
     addAndMakeVisible(&envGUI);
     addAndMakeVisible(&filterGUI);
@@ -41,6 +44,7 @@ void SaucyWavesSynthAudioProcessorEditor::paint (Graphics& g)
     auto colour2 = Colour(67,137,162);
     auto gradient = ColourGradient(colour1, 0, 0, colour2, 600, 300, false);
     g.setGradientFill(gradient);
+//    auto colour = Colour(241, 144, 102);
     g.fillAll();
 
 }

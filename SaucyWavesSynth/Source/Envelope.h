@@ -16,7 +16,7 @@
 //==============================================================================
 /*
 */
-class Envelope    : public Component//,
+class Envelope    : public Component, public LookAndFeel_V4//,
 //public Slider::Listener
 {
 public:
@@ -25,7 +25,12 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-//    void sliderValueChanged(Slider* slider) override;
+    
+    
+    void drawLinearSlider (Graphics &, int x, int y, int width, int height, float sliderPos, float minSliderPos, float maxSliderPos, const Slider::SliderStyle, Slider &) override
+    {
+        
+    }
 
 private:
     
@@ -33,6 +38,7 @@ private:
     Slider releaseSlider;
     Slider decaySlider;
     Slider sustainSlider;
+    LookAndFeel_V4 lookAndFeel;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> decayTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;

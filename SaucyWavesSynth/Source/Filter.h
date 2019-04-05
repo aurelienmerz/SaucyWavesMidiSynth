@@ -37,21 +37,21 @@ public:
         auto angle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
         
         // fill
-        g.setColour (Colours::orange);
+        g.setColour (Colours::white);
         g.fillEllipse (rx, ry, rw, rw);
         
         // outline
-        g.setColour (Colours::red);
-        g.drawEllipse (rx, ry, rw, rw, 1.0f);
+        g.setColour (Colours::white);
+        g.drawEllipse (rx, ry, rw, rw, 0.10f);
         
         Path p;
-        auto pointerLength = radius * 0.33f;
-        auto pointerThickness = 2.0f;
+        auto pointerLength = radius * 0.5f;
+        auto pointerThickness = 4.0f;
         p.addRectangle (-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
         p.applyTransform (AffineTransform::rotation (angle).translated (centreX, centreY));
         
         // pointer
-        g.setColour (Colours::yellow);
+        g.setColour (Colours::black);
         g.fillPath (p);
     }
 

@@ -20,6 +20,7 @@ processor(p)
     filterMenu.addItem("Low-pass", 1);
     filterMenu.addItem("High-pass", 2);
     filterMenu.addItem("Band-pass", 3);
+    filterMenu.setItemEnabled(3, false);
     filterMenu.setJustificationType(Justification::centred);
     addAndMakeVisible(&filterMenu);
     filterTypeVal = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"filterType",filterMenu);
@@ -50,7 +51,7 @@ Filter::~Filter()
 
 void Filter::paint (Graphics& g)
 {
-    Rectangle<int> titleArea (0,10,getWidth(),20);
+    Rectangle<int> titleArea (0,10,getWidth(),25);
     auto bckgrnd = Colour();
     g.fillAll (bckgrnd);   // clear the background
 //    auto purpleHue = Colours::purple.getHue();
@@ -59,11 +60,12 @@ void Filter::paint (Graphics& g)
 //    g.setGradientFill(ColourGradient)
 
     g.setColour(Colours::white);
-    g.drawText("Filter",titleArea, Justification::centredTop);
+    g.drawText("FILTER",titleArea, Justification::centredTop);
     
     Rectangle<float> area (25,25,150,150);
-    g.setColour(Colours::yellow);
-    g.drawRoundedRectangle(area, 20.0f, 2.0f);
+    auto colour = Colour(84, 109, 229);
+    g.setColour(Colours::white);
+    g.drawRoundedRectangle(area, 20.0f, 3.0f);
 }
 
 void Filter::resized()
