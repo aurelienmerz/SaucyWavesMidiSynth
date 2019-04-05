@@ -53,9 +53,17 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.roli.juce.pluginhost"
-         FilePath = "/Users/aurelienmerz/Desktop/JUCE/extras/AudioPluginHost/Builds/MacOSX/build/Debug/AudioPluginHost.app">
+         FilePath = "/Users/aurelienmerz/Documents/GitHub/SaucyWavesMidiSynth/SaucyWavesSynth/AudioPluginHost.app">
       </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7DC99BDFCC3C7C7B6F8172BE"
+            BuildableName = "SaucyWavesSynth - All"
+            BlueprintName = "SaucyWavesSynth - All"
+            ReferencedContainer = "container:SaucyWavesSynth.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
