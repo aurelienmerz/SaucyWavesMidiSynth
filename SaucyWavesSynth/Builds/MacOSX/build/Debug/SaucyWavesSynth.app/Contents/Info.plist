@@ -8,6 +8,8 @@
 	<string>SaucyWavesSynth</string>
 	<key>CFBundleExecutable</key>
 	<string>SaucyWavesSynth</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.DejaNewPlugins.SaucyWavesSynth</string>
 	<key>CFBundleName</key>

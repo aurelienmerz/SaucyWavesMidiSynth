@@ -11,8 +11,11 @@ namespace BinaryData
     extern const char*   snare_wav;
     const int            snare_wavSize = 26734;
 
+    extern const char*   SaucyWaves_App_Icon_jpg;
+    const int            SaucyWaves_App_Icon_jpgSize = 71152;
+
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 1;
+    const int namedResourceListSize = 2;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

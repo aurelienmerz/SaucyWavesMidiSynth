@@ -48,9 +48,11 @@
       <FILE id="uBcVyq" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
       <FILE id="yj6HvK" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
     </GROUP>
+    <FILE id="XnBInH" name="SaucyWaves App Icon.jpg" compile="0" resource="1"
+          file="Source/SaucyWaves App Icon.jpg"/>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="XnBInH">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="/Users/aurelienmerz/Desktop/DEV/Maximilian"/>
         <CONFIGURATION isDebug="0" name="Release"/>
