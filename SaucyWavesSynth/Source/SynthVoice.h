@@ -21,8 +21,16 @@ public:
     {
         return dynamic_cast<SynthesiserSound*>(sound) != nullptr;
     }
-    //=========================================
     
+
+    
+    /*! \brief Getting the parameters from the AudioProcessorValueTreeState for the envelope.
+    *
+    *  \param attack float pointer
+    *  \param decay float pointer
+    *  \param sustain float pointer
+    *  \param release float pointer
+    */
     void getEnvelopeParam(float* attack, float* decay, float* sustain, float* release)
     {
         env1.setAttack(double(*attack));
@@ -31,11 +39,23 @@ public:
         env1.setSustain(double(*sustain));
     }
     
+    //=========================================
+    
+    /*! \brief Sets the ADSR envelope.
+     *  \return double
+     */
     double setEnvelope()
     {
         return (env1.adsr(setOscType(),env1.trigger));
     }
     
+    //=========================================
+    /*! \brief Getting the parameters from the AudioProcessorValueTreeState for the filter.
+     *
+     *  \param type float pointer
+     *  \param cutoff float pointer
+     *  \param res float pointer
+     */
     void getFilterParam(float* type, float* cutoff, float* res)
     {
         filterChoice = *type;
@@ -43,6 +63,11 @@ public:
         resonance = *res;
     }
     
+    //=========================================
+    /*! \brief Returns the type of filter based on the
+     *         selection from the ComboBox.
+     *  \return double
+     */
     double setFilter()
     {
         if(filterChoice == 0)
@@ -64,6 +89,11 @@ public:
         
     }
     
+    //=========================================
+    /*! \brief Updates the state of the dsp::StateVariableFilter based
+     *         selection from the ComboBox.
+     *  \return void
+     */
     void updateFilter()
     {
         if (filterChoice == 0)
@@ -89,6 +119,8 @@ public:
     {
         waveSelect = *selection;
     }
+    
+    //=========================================
     
     double setOscType()
     {
@@ -116,7 +148,7 @@ public:
     {
         env1.trigger = 1;
         level = velocity * 0.15;
-        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber); // Converting the keyboard note into frequency
     }
     //=========================================
     
@@ -148,6 +180,8 @@ public:
         
     }
     
+    //=========================================
+    
     void initFilter()
     {
         dsp::ProcessSpec spec;
@@ -161,7 +195,12 @@ public:
     }
     
     //=========================================
-    
+    /*! \brief Main function for processing audio data.
+     *
+     *  \param outputBuffer AudioBuffer<float>
+     *  \param startSample int
+     *  \param numSamples int
+     */
     void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
     {
         for(int sample = 0; sample < numSamples ; ++sample)

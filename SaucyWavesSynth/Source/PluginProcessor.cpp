@@ -45,7 +45,7 @@ tree(*this,nullptr)
     tree.createAndAddParameter("filterType", "FilerType", "filterType", filterTypeParam,0, nullptr, nullptr);
     
     tree.state = ValueTree("Synth");
-//    addParameter(attackP = new AudioParameterFloat("attack","Attack",0.1f, 5000.0f,0.1f));
+    
     mySynth.clearVoices();
     
     for (auto i = 0; i < 4; ++i) 

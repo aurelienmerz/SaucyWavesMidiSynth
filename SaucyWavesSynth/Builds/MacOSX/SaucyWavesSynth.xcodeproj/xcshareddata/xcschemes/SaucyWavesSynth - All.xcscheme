@@ -53,6 +53,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
+         BundleIdentifier = "com.roli.juce.pluginhost"
          FilePath = "/Users/aurelienmerz/Documents/GitHub/SaucyWavesMidiSynth/SaucyWavesSynth/AudioPluginHost.app">
       </PathRunnable>
       <MacroExpansion>

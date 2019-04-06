@@ -54,11 +54,6 @@ void Filter::paint (Graphics& g)
     Rectangle<int> titleArea (0,10,getWidth(),25);
     auto bckgrnd = Colour();
     g.fillAll (bckgrnd);   // clear the background
-//    auto purpleHue = Colours::purple.getHue();
-//    g.fillAll (Colour::fromHSV (purpleHue, 0.5f, 0.5f, 1.0f));
-//    auto gradient = ColourGradient()
-//    g.setGradientFill(ColourGradient)
-
     g.setColour(Colours::white);
     g.drawText("FILTER",titleArea, Justification::centredTop);
     

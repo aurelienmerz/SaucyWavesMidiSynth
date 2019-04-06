@@ -25,12 +25,6 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-    
-    
-    void drawLinearSlider (Graphics &, int x, int y, int width, int height, float sliderPos, float minSliderPos, float maxSliderPos, const Slider::SliderStyle, Slider &) override
-    {
-        
-    }
 
 private:
     
@@ -44,8 +38,6 @@ private:
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> sustainTree;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseTree;
     
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     SaucyWavesSynthAudioProcessor& processor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Envelope)
 };

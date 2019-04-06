@@ -25,6 +25,7 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
+    /* Overriding the method to draw the faders new look */
     void drawRotarySlider (Graphics& g, int x, int y, int width, int height, float sliderPos,
                            const float rotaryStartAngle, const float rotaryEndAngle, Slider& slider) override
     {
@@ -64,8 +65,6 @@ private:
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> filterVal;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> resVal;
     
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     SaucyWavesSynthAudioProcessor& processor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Filter)
 };

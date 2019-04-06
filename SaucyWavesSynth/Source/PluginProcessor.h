@@ -62,7 +62,7 @@ public:
     float releaseTime;
     float decayTime;
     float sustainTime;
-    AudioProcessorValueTreeState tree;
+    AudioProcessorValueTreeState tree; // List of objects contained within the AudioProcessor
 
 private:
     

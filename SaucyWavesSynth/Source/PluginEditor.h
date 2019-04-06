@@ -33,16 +33,14 @@ public:
 
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     SaucyWavesSynthAudioProcessor& processor;
     
     Oscillator oscGUI;
     Envelope envGUI;
     Filter filterGUI;
     
-    MidiKeyboardState keyboardState;            // [5]
-    MidiKeyboardComponent keyboardComponent;    // [6]
+    MidiKeyboardState keyboardState;
+    MidiKeyboardComponent keyboardComponent;
     TextEditor midiMessagesBox;
     
     void logMessage (const String& m)
