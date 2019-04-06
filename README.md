@@ -6,7 +6,8 @@ This guide assumes you have a machine equipped with XCode 10.2 or higher, Projuc
 ## Installation
 1.  Download repository on your machine
 2.  Open the **SaucyWavesSynth.jucer** file from within the downloaded repository in Projucer desktop app if not by default 
-3.  In the Projucer, add the Maximilian lib folder to the source folder under the *File Explorer* section. Then add the Maximilian lib path on your machine inside the **"Header Search Paths"** textbox under the *Exporters/Debug* section  
+3.  In the Projucer, add the Maximilian lib folder to the source folder under the *File Explorer* section. You do not need all the files but make sure you delete the **maxiSynths.cpp** and the **maxiSynths.h** because they will cause errors. Then add the Maximilian lib path on your machine inside the **"Header Search Paths"** textbox under the *Exporters/Debug* section.
+An important step within the Projucer
 4.  Click the save button next to the **"Selected exporter"** menu and XCode will open automatically
 5.  Once XCode is open, go to **Scheme** section under the *Product* menu and click on **"Edit Scheme..."**. Under the *Info* tab, click on the Executable list and click on **"Other..."**. Then select the **AudioPluginHost.app** from the downloaded repository. Click close after that. It is an important step for doing the plug-in development.
 
@@ -19,6 +20,8 @@ Saucy Waves is a polyphonic midi software synth plug-in. It has one oscillator p
 Saucy Waves is designed for musicians, composers, producers, sound designers and artists looking to create new sounds to use in their compositions. 
 
 ## Plugin usage: 
+Download the plug-in as VST or AU from this link and follow the instructions on the **READ_ME.txt**: https://drive.google.com/drive/folders/1-EYv4f8IMFTOchJs_PYzhlFliOxg9dVd?usp=sharing
+
 1.  *Connect your midi controller to your computer via USB or Bluetooth (ROLI)
 2.  *Open your DAW of choice
 3.  *Open a midi track
