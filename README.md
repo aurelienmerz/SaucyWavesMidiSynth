@@ -22,10 +22,10 @@ Saucy Waves is designed for musicians, composers, producers, sound designers and
 ## Plugin usage: 
 Download the plug-in as VST or AU from this link and follow the instructions on the **READ_ME.txt**: https://drive.google.com/drive/folders/1-EYv4f8IMFTOchJs_PYzhlFliOxg9dVd?usp=sharing
 
-1.  *Connect your midi controller to your computer via USB or Bluetooth (ROLI)
-2.  *Open your DAW of choice
-3.  *Open a midi track
-4.  *Open Saucy Waves as AU (MacOs) or VST
+1.  *Connect your midi controller to your computer via USB or Bluetooth (ROLI)*
+2.  *Open your DAW of choice*
+3.  *Open a midi track*
+4.  *Open Saucy Waves as AU (MacOs) or VST*
 5.  *Ready to record*
 
 ## Development 
