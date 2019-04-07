@@ -21,11 +21,8 @@ processor(p)
     oscMenu.addItem("Square", 3);
     addAndMakeVisible(&oscMenu);
     oscMenu.addListener(this);
-    
     waveSelection = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"wavetype", oscMenu);
-    
     oscMenu.setJustificationType(Justification::centred);
-    
 
 }
 

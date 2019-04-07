@@ -31,7 +31,7 @@ tree(*this,nullptr, "PARAMETERS",
     std::make_unique<AudioParameterFloat>("decay", "Decay", NormalisableRange<float> (0.1f, 2.0f),0.8f),
     std::make_unique<AudioParameterFloat>("sustain", "Sustain", NormalisableRange<float> (0.1f, 5.0f), 0.8f),
     std::make_unique<AudioParameterFloat>("wavetype", "WaveType", NormalisableRange<float> (0,2),0.0f),
-    std::make_unique<AudioParameterFloat>("filterCutOff", "FilterCutOff", NormalisableRange<float> (20.0f,10000.0f),0.0f),
+    std::make_unique<AudioParameterFloat>("filterCutOff", "FilterCutOff", NormalisableRange<float> (20.0f,20000.0f),0.0f),
     std::make_unique<AudioParameterFloat>("filterRes", "FilterRes", NormalisableRange<float> (1.0f,5.0f),0.0f),
     std::make_unique<AudioParameterFloat>("filterType", "FilerType", NormalisableRange<float> (0,2),0.0f),
     std::make_unique<AudioParameterFloat>("mastergain", "MasterGain", NormalisableRange<float>(0.0f, 1.0f), 0.7f),
@@ -140,6 +140,11 @@ void SaucyWavesSynthAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+}
+void SaucyWavesSynthAudioProcessor::initFilter()
+{
+    stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::bandPass;
+    stateVariableFilter.state->setCutOffFrequency(lastSampleRate, 20000,1);
 }
 
 void SaucyWavesSynthAudioProcessor::updateFilter()

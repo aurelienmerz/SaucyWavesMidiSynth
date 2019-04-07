@@ -67,30 +67,6 @@ public:
         pitchBendUpSemitones = *pbup;
         pitchBendDownSemitones = *pbdn;
     }
-        
-    //=========================================
-    /*! \brief Updates the state of the dsp::StateVariableFilter based
-     *         selection from the ComboBox.
-     *  \return void
-     */
-    void updateFilter()
-    {
-        if (filterChoice == 0)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::lowPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
-        if (filterChoice == 1)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::highPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
-        if (filterChoice == 2)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::bandPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
-    }
     
     //=========================================
     
@@ -136,7 +112,6 @@ public:
         setPitchBend(currentPitchWheelPosition);
         frequency = noteInHertz(noteNumber, pitchBendCents());
         level = velocity;
-//        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber); // Converting the keyboard note into frequency
     }
     //=========================================
     
@@ -224,9 +199,6 @@ private:
     float level = 0.0;
     float frequency = 0.0;
     double tailOff = 0.0;
-    
-    dsp::ProcessorDuplicator<dsp::StateVariableFilter::Filter<float>,
-    dsp::StateVariableFilter::Parameters<float>> stateVariableFilter;
     
     dsp::Oscillator<float> dspOsc1;
 

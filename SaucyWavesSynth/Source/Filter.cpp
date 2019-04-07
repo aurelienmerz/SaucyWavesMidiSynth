@@ -20,14 +20,14 @@ processor(p)
     filterMenu.addItem("Low-pass", 1);
     filterMenu.addItem("High-pass", 2);
     filterMenu.addItem("Band-pass", 3);
-    filterMenu.setItemEnabled(3, false);
+//    filterMenu.setItemEnabled(3, false);
     filterMenu.setJustificationType(Justification::centred);
     addAndMakeVisible(&filterMenu);
     filterTypeVal = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"filterType",filterMenu);
     
     filterCutOff.setSliderStyle(Slider::Rotary);
     filterCutOff.setRange(40.0, 20000.0);
-    filterCutOff.setValue(600.0f);
+    filterCutOff.setValue(20000.0f);
     filterCutOff.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     filterCutOff.setPopupDisplayEnabled(true, true, this);
     addAndMakeVisible(&filterCutOff);
