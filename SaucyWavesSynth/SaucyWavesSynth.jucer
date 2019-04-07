@@ -32,6 +32,8 @@
         <FILE id="RGP5sM" name="stb_vorbis.c" compile="1" resource="0" file="../../../../Desktop/DEV/Maximilian/stb_vorbis.c"/>
         <FILE id="rPtzsx" name="stb_vorbis.h" compile="0" resource="0" file="../../../../Desktop/DEV/Maximilian/stb_vorbis.h"/>
       </GROUP>
+      <FILE id="LUWjPt" name="MasterGain.cpp" compile="1" resource="0" file="Source/MasterGain.cpp"/>
+      <FILE id="l7Xz11" name="MasterGain.h" compile="0" resource="0" file="Source/MasterGain.h"/>
       <FILE id="aPcZq7" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="BcKBx6" name="PluginProcessor.h" compile="0" resource="0"

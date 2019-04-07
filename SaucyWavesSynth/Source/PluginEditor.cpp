@@ -13,10 +13,10 @@
 
 //==============================================================================
 SaucyWavesSynthAudioProcessorEditor::SaucyWavesSynthAudioProcessorEditor (SaucyWavesSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGUI(p),envGUI(p),filterGUI(p),
+    : AudioProcessorEditor (&p), processor (p), oscGUI(p),envGUI(p),filterGUI(p),masterGUI(p),
 keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
 {
-    setSize (600, 200);
+    setSize (900, 200);
     setLookAndFeel(&filterGUI);
     getLookAndFeel().setColour(Slider::thumbColourId, Colours::white);
     getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
@@ -24,6 +24,8 @@ keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
     addAndMakeVisible(&oscGUI);
     addAndMakeVisible(&envGUI);
     addAndMakeVisible(&filterGUI);
+    addAndMakeVisible(&masterGUI);
+    
     addAndMakeVisible (keyboardComponent);
     keyboardState.addListener (this);
 }
@@ -54,6 +56,7 @@ void SaucyWavesSynthAudioProcessorEditor::resized()
     oscGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     filterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     envGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
+    masterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     
 }
 

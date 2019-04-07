@@ -33,7 +33,10 @@ tree(*this,nullptr, "PARAMETERS",
     std::make_unique<AudioParameterFloat>("wavetype", "WaveType", NormalisableRange<float> (0,2),0.0f),
     std::make_unique<AudioParameterFloat>("filterCutOff", "FilterCutOff", NormalisableRange<float> (20.0f,10000.0f),0.0f),
     std::make_unique<AudioParameterFloat>("filterRes", "FilterRes", NormalisableRange<float> (1.0f,5.0f),0.0f),
-    std::make_unique<AudioParameterFloat>("filterType", "FilerType", NormalisableRange<float> (0,2),0.0f)
+    std::make_unique<AudioParameterFloat>("filterType", "FilerType", NormalisableRange<float> (0,2),0.0f),
+    std::make_unique<AudioParameterFloat>("mastergain", "MasterGain", NormalisableRange<float>(0.0f, 1.0f), 0.7f),
+    std::make_unique<AudioParameterFloat>("pbup", "PBup", NormalisableRange<float>(1.0f, 12.0f), 2.0f),
+    std::make_unique<AudioParameterFloat>("pbdown", "PBdown", NormalisableRange<float>(1.0f, 12.0f), 2.0f),
 })
 {
     tree.state = ValueTree("Synth");
@@ -203,9 +206,14 @@ void SaucyWavesSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mi
                               tree.getRawParameterValue("release"));
             
             myVoice->getOscType(tree.getRawParameterValue("wavetype"));
+            
             myVoice->getFilterParam(tree.getRawParameterValue("filterType"),
                                     tree.getRawParameterValue("filterCutOff"),
                                     tree.getRawParameterValue("filterRes"));
+            
+            myVoice->getMasterGainParams(tree.getRawParameterValue("mastergain"),
+                                    tree.getRawParameterValue("pbup"),
+                                    tree.getRawParameterValue("pbdown"));
             
         }
     }

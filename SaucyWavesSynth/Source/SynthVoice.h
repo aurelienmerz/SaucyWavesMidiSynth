@@ -21,7 +21,14 @@ public:
     {
         return dynamic_cast<SynthesiserSound*>(sound) != nullptr;
     }
-    
+    void initDspOsc(dsp::ProcessSpec spec)
+    {
+        dspOsc1.prepare(spec);
+    }
+    void resetDspOsc()
+    {
+        dspOsc1.reset();
+    }
     void setADSRSampleRate(double sampleRate)
     {
         adsr.setSampleRate(sampleRate);
@@ -53,6 +60,12 @@ public:
         filterChoice = *type;
         cutOff = *cutoff;
         resonance = *res;
+    }
+    void getMasterGainParams(float* mGain, float* pbup, float* pbdn)
+    {
+        masterGain = *mGain;
+        pitchBendUpSemitones = *pbup;
+        pitchBendDownSemitones = *pbdn;
     }
         
     //=========================================
@@ -113,13 +126,17 @@ public:
         hertz *= std::pow(2.0, centOffset / 1200);
         return hertz;
     }
+    
     //=========================================
     
     void startNote( int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition)
     {
         adsr.noteOn();
-        level = velocity * 0.15;
-        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber); // Converting the keyboard note into frequency
+        noteNumber = midiNoteNumber;
+        setPitchBend(currentPitchWheelPosition);
+        frequency = noteInHertz(noteNumber, pitchBendCents());
+        level = velocity;
+//        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber); // Converting the keyboard note into frequency
     }
     //=========================================
     
@@ -138,10 +155,39 @@ public:
         }
     }
     //=========================================
+    void setPitchBend(int pitchWheelPos)
+    {
+        if (pitchWheelPos > 8192)
+        {
+            // shifting up
+            pitchBend = float(pitchWheelPos - 8192) / (16383 - 8192);
+        }
+        else
+        {
+            // shifting down
+            pitchBend = float(8192 - pitchWheelPos) / -8192;    // negative number
+        }
+    }
+    
+    float pitchBendCents()
+    {
+        if (pitchBend >= 0.0f)
+        {
+            // shifting up
+            return pitchBend * pitchBendUpSemitones * 100;
+        }
+        else
+        {
+            // shifting down
+            return pitchBend * pitchBendDownSemitones * 100;
+        }
+    }
+    
     
     void pitchWheelMoved (int newPitchWheelValue)
     {
-        
+        setPitchBend(newPitchWheelValue);
+        frequency = noteInHertz(noteNumber, pitchBendCents());
     }
     
     //=========================================
@@ -167,7 +213,7 @@ public:
         {
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
             {
-                outputBuffer.addSample(channel, startSample,adsr.getNextSample() * setOscType() * 0.3f);
+                outputBuffer.addSample(channel, startSample,adsr.getNextSample() * setOscType() * masterGain);
                 tailOff *= 0.99;
             }
             ++startSample;
@@ -191,6 +237,12 @@ private:
     maxiOsc osc1;
     ADSR adsr;
     ADSR::Parameters adsrParams;
+    
+    float masterGain;
+    int noteNumber;
+    float pitchBend = 0.0f;
+    float pitchBendUpSemitones = 2.0f;
+    float pitchBendDownSemitones = 2.0f;
     
     
 };
