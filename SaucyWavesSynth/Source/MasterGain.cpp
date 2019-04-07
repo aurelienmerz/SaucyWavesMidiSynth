@@ -14,22 +14,27 @@
 MasterGain::MasterGain(SaucyWavesSynthAudioProcessor& p) :
 processor(p)
 {
-    setSize(200, 400);
+    setSize(200, 200);
     
     //slider initialization values
-    mastergainSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+    mastergainSlider.setSliderStyle(Slider::Rotary);
+    mastergainSlider.setSliderSnapsToMousePosition(false);
     mastergainSlider.setRange(0.0f, 1.0f);
     mastergainSlider.setValue(1.0f);
+    mastergainSlider.setDoubleClickReturnValue(true, 1.0f);
     mastergainSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
+    mastergainSlider.setPopupDisplayEnabled(true, true, this);
     addAndMakeVisible(&mastergainSlider);
     
     pbupSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+    pbupSlider.setSliderSnapsToMousePosition(false);
     pbupSlider.setRange(0, 12);
     pbupSlider.setValue(12);
     pbupSlider.setTextBoxStyle(Slider::TextBoxRight, true, 35, 25);
     addAndMakeVisible(&pbupSlider);
     
     pbdownSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+    pbdownSlider.setSliderSnapsToMousePosition(false);
     pbdownSlider.setRange(0, 12);
     pbdownSlider.setValue(12);
     pbdownSlider.setTextBoxStyle(Slider::TextBoxRight, true, 35, 25);
@@ -56,8 +61,8 @@ void MasterGain::paint (Graphics& g)
     g.drawText("MASTER", titleArea, Justification::centredTop);
     
     //static positioning for now due to time, make dynamic later
-    g.drawText ("Master", 53, 40, 40, 20, Justification::centredLeft);
-    g.drawText ("PB Up/Down", 53, 90, 90, 20, Justification::centredLeft);
+//    g.drawText ("Master", 53, 40, 40, 20, Justification::centredLeft);
+    g.drawText ("PB Up/Down", 53, 90, 90, 20, Justification::centred);
     
     Rectangle<float> area (25,25,150,150);
     //    auto colour = Colour(84, 109, 229);
@@ -75,8 +80,8 @@ void MasterGain::resized()
     
     //draw sliders by reducing area from rectangle above
     
-    mastergainSlider.setBounds(45, 20, 120, 100 );
-    pbdownSlider.setBounds (area.removeFromBottom(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(10));
-    pbupSlider.setBounds (area.removeFromBottom(sliderHeight).removeFromTop(sliderWidth).withTrimmedTop(10));
+    mastergainSlider.setBounds(70, 30, 60, 60 );
+    pbdownSlider.setBounds (area.removeFromBottom(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
+    pbupSlider.setBounds (area.removeFromBottom(sliderHeight).removeFromTop(sliderWidth).withTrimmedTop(5));
     
 }

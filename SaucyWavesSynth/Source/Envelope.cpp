@@ -17,21 +17,25 @@ processor(p)
 {
     setSize(200, 200);
     attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    attackSlider.setSliderSnapsToMousePosition(false);
     attackSlider.setRange(1.0f, 5.0f);
     attackSlider.setValue(0.1f);
     addAndMakeVisible(&attackSlider);
     
     decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    decaySlider.setSliderSnapsToMousePosition(false);
     decaySlider.setRange(0.1f, 2.0f);
     decaySlider.setValue(0.8f);
     addAndMakeVisible(&decaySlider);
     
     sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    sustainSlider.setSliderSnapsToMousePosition(false);
     sustainSlider.setRange(0.1f, 1.0f);
     sustainSlider.setValue(0.8f);
     addAndMakeVisible(&sustainSlider);
     
     releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    releaseSlider.setSliderSnapsToMousePosition(false);
     releaseSlider.setRange(1.0f, 5.0f);
     releaseSlider.setValue(0.8f);
     addAndMakeVisible(&releaseSlider);

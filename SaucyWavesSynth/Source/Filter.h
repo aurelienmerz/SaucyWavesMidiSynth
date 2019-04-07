@@ -61,6 +61,10 @@ private:
     LookAndFeel_V4 lookAndFeel;
     Slider filterCutOff;
     Slider filterRes;
+    Label lowFreq;
+    Font lowFont;
+    Label highFreq;
+    Font highFont;
     ScopedPointer <AudioProcessorValueTreeState::ComboBoxAttachment> filterTypeVal;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> filterVal;
     ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> resVal;

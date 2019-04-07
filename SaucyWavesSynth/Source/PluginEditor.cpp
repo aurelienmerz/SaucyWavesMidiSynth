@@ -16,8 +16,9 @@ SaucyWavesSynthAudioProcessorEditor::SaucyWavesSynthAudioProcessorEditor (SaucyW
     : AudioProcessorEditor (&p), processor (p), oscGUI(p),envGUI(p),filterGUI(p),masterGUI(p),
 keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
 {
-    setSize (900, 200);
+    setSize (800, 400);
     setLookAndFeel(&filterGUI);
+    setLookAndFeel(&masterGUI);
     getLookAndFeel().setColour(Slider::thumbColourId, Colours::white);
     getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
     
