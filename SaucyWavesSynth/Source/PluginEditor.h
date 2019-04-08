@@ -40,6 +40,8 @@ private:
     Envelope envGUI;
     Filter filterGUI;
     MasterGain masterGUI;
+    Label title;
+    Font font;
     
     MidiKeyboardState keyboardState;
     MidiKeyboardComponent keyboardComponent;

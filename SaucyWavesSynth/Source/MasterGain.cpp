@@ -80,8 +80,8 @@ void MasterGain::resized()
     
     //draw sliders by reducing area from rectangle above
     
-    mastergainSlider.setBounds(70, 30, 60, 60 );
-    pbdownSlider.setBounds (area.removeFromBottom(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
-    pbupSlider.setBounds (area.removeFromBottom(sliderHeight).removeFromTop(sliderWidth).withTrimmedTop(5));
+    mastergainSlider.setBounds(70, 30, 60, 60);
+    pbdownSlider.setBounds (area.removeFromBottom(sliderWidth).removeFromTop(sliderHeight));
+    pbupSlider.setBounds (area.removeFromBottom(sliderWidth).removeFromTop(sliderHeight));
     
 }

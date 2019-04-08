@@ -27,6 +27,12 @@ keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
     addAndMakeVisible(&filterGUI);
     addAndMakeVisible(&masterGUI);
     
+    title.setText("SAUCY WAVES Version 1.0", NotificationType::dontSendNotification);
+    font.setBold(true);
+    title.setFont(font);
+    title.setColour(1, Colours::white);
+    addAndMakeVisible(title);
+    
     addAndMakeVisible (keyboardComponent);
     keyboardState.addListener (this);
 }
@@ -52,12 +58,13 @@ void SaucyWavesSynthAudioProcessorEditor::resized()
 {
     auto area = getLocalBounds();
     const int componentWidth = 200;
-    const int componentHeight = 200;
+    const int componentHeight = 240;
     
-    oscGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
-    filterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
-    envGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
-    masterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
+    oscGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight).withTrimmedTop(40));
+    filterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight).withTrimmedTop(40));
+    envGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight).withTrimmedTop(40));
+    masterGUI.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight).withTrimmedTop(40));
+    title.setBounds(0, 0, 300, 25);
     
 }
 
