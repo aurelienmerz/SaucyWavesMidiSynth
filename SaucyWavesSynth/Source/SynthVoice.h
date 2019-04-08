@@ -21,9 +21,18 @@ public:
     {
         return dynamic_cast<SynthesiserSound*>(sound) != nullptr;
     }
-    
-
-    
+    void initDspOsc(dsp::ProcessSpec spec)
+    {
+        dspOsc1.prepare(spec);
+    }
+    void resetDspOsc()
+    {
+        dspOsc1.reset();
+    }
+    void setADSRSampleRate(double sampleRate)
+    {
+        adsr.setSampleRate(sampleRate);
+    }
     /*! \brief Getting the parameters from the AudioProcessorValueTreeState for the envelope.
     *
     *  \param attack float pointer
@@ -33,20 +42,10 @@ public:
     */
     void getEnvelopeParam(float* attack, float* decay, float* sustain, float* release)
     {
-        env1.setAttack(double(*attack));
-        env1.setRelease(double(*release));
-        env1.setDecay(double(*decay));
-        env1.setSustain(double(*sustain));
-    }
-    
-    //=========================================
-    
-    /*! \brief Sets the ADSR envelope.
-     *  \return double
-     */
-    double setEnvelope()
-    {
-        return (env1.adsr(setOscType(),env1.trigger));
+        adsrParams.attack = *attack;
+        adsrParams.decay = *decay;
+        adsrParams.sustain = *sustain;
+        adsrParams.release = *release;
     }
     
     //=========================================
@@ -62,55 +61,11 @@ public:
         cutOff = *cutoff;
         resonance = *res;
     }
-    
-    //=========================================
-    /*! \brief Returns the type of filter based on the
-     *         selection from the ComboBox.
-     *  \return double
-     */
-    double setFilter()
+    void getMasterGainParams(float* mGain, float* pbup, float* pbdn)
     {
-        if(filterChoice == 0)
-        {
-            return filter1.lores(setEnvelope(), cutOff, resonance);
-        }
-        if(filterChoice == 1)
-        {
-            return filter1.hires(setEnvelope(), cutOff, resonance);
-        }
-        if(filterChoice == 2)
-        {
-            return filter1.bandpass(setEnvelope(), cutOff, resonance);
-        }
-        else
-        {
-            return filter1.lores(setEnvelope(), cutOff, resonance);
-        }
-        
-    }
-    
-    //=========================================
-    /*! \brief Updates the state of the dsp::StateVariableFilter based
-     *         selection from the ComboBox.
-     *  \return void
-     */
-    void updateFilter()
-    {
-        if (filterChoice == 0)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::lowPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
-        if (filterChoice == 1)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::highPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
-        if (filterChoice == 2)
-        {
-            stateVariableFilter.state->type = dsp::StateVariableFilter::Parameters<float>::Type::bandPass;
-            stateVariableFilter.state->setCutOffFrequency(frequency, cutOff,resonance);
-        }
+        masterGain = *mGain;
+        pitchBendUpSemitones = *pbup;
+        pitchBendDownSemitones = *pbdn;
     }
     
     //=========================================
@@ -141,20 +96,28 @@ public:
         }
     }
     
+    static double noteInHertz(int midiNoteNumber, double centOffset)
+    {
+        double hertz = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+        hertz *= std::pow(2.0, centOffset / 1200);
+        return hertz;
+    }
     
     //=========================================
     
     void startNote( int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition)
     {
-        env1.trigger = 1;
-        level = velocity * 0.15;
-        frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber); // Converting the keyboard note into frequency
+        adsr.noteOn();
+        noteNumber = midiNoteNumber;
+        setPitchBend(currentPitchWheelPosition);
+        frequency = noteInHertz(noteNumber, pitchBendCents());
+        level = velocity;
     }
     //=========================================
     
     void stopNote(float velocity, bool allowTailoff)
     {
-        env1.trigger = 0;
+        adsr.noteOff();
         allowTailoff = true;
         if(allowTailoff)
         {
@@ -167,10 +130,39 @@ public:
         }
     }
     //=========================================
+    void setPitchBend(int pitchWheelPos)
+    {
+        if (pitchWheelPos > 8192)
+        {
+            // shifting up
+            pitchBend = float(pitchWheelPos - 8192) / (16383 - 8192);
+        }
+        else
+        {
+            // shifting down
+            pitchBend = float(8192 - pitchWheelPos) / -8192;    // negative number
+        }
+    }
+    
+    float pitchBendCents()
+    {
+        if (pitchBend >= 0.0f)
+        {
+            // shifting up
+            return pitchBend * pitchBendUpSemitones * 100;
+        }
+        else
+        {
+            // shifting down
+            return pitchBend * pitchBendDownSemitones * 100;
+        }
+    }
+    
     
     void pitchWheelMoved (int newPitchWheelValue)
     {
-        
+        setPitchBend(newPitchWheelValue);
+        frequency = noteInHertz(noteNumber, pitchBendCents());
     }
     
     //=========================================
@@ -182,18 +174,6 @@ public:
     
     //=========================================
     
-    void initFilter()
-    {
-        dsp::ProcessSpec spec;
-        spec.sampleRate = 44100;
-        spec.maximumBlockSize = 512;
-        spec.numChannels = 2;
-        
-        stateVariableFilter.reset();
-        //    updateFilter();
-        stateVariableFilter.prepare(spec);
-    }
-    
     //=========================================
     /*! \brief Main function for processing audio data.
      *
@@ -203,36 +183,38 @@ public:
      */
     void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
     {
+        adsr.setParameters(adsrParams);
         for(int sample = 0; sample < numSamples ; ++sample)
         {
             for(int channel = 0; channel < outputBuffer.getNumChannels();++channel)
             {
-                outputBuffer.addSample(channel, startSample,setFilter() * 0.3f);
+                outputBuffer.addSample(channel, startSample,adsr.getNextSample() * setOscType() * masterGain);
                 tailOff *= 0.99;
             }
             ++startSample;
         }
-//        dsp::AudioBlock<float> block (outputBuffer);
-//        updateFilter();
-//        stateVariableFilter.process(dsp::ProcessContextReplacing<float>(block));
-        
     }
+    
 private:
     float level = 0.0;
     float frequency = 0.0;
     double tailOff = 0.0;
     
-    dsp::ProcessorDuplicator<dsp::StateVariableFilter::Filter<float>,
-    dsp::StateVariableFilter::Parameters<float>> stateVariableFilter;
-    
+    dsp::Oscillator<float> dspOsc1;
+
     int waveSelect;
-    
     int filterChoice;
     float cutOff;
     float resonance;
     maxiOsc osc1;
-    maxiEnv env1;
-    maxiFilter filter1;
+    ADSR adsr;
+    ADSR::Parameters adsrParams;
+    
+    float masterGain;
+    int noteNumber;
+    float pitchBend = 0.0f;
+    float pitchBendUpSemitones = 2.0f;
+    float pitchBendDownSemitones = 2.0f;
     
     
 };

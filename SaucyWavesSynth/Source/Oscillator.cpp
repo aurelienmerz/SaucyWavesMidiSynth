@@ -21,11 +21,8 @@ processor(p)
     oscMenu.addItem("Square", 3);
     addAndMakeVisible(&oscMenu);
     oscMenu.addListener(this);
-    
     waveSelection = new AudioProcessorValueTreeState::ComboBoxAttachment(processor.tree,"wavetype", oscMenu);
-    
     oscMenu.setJustificationType(Justification::centred);
-    
 
 }
 
@@ -38,14 +35,11 @@ void Oscillator::paint (Graphics& g)
     Rectangle<int> titleArea (0,10, getWidth(),25);
     auto bckgrnd = Colour();
     g.fillAll (bckgrnd);   // clear the background
-
-//    g.fillAll(Colours::black);
-    
     g.setColour(Colours::white);
     g.drawText("OSC", titleArea, Justification::centredTop);
     
     Rectangle<float> area (25,25,150,150);
-    auto colour = Colour(84, 109, 229);
+//    auto colour = Colour(84, 109, 229);
     g.setColour(Colours::white);
     g.drawRoundedRectangle(area,20.0f, 3.0f);
 

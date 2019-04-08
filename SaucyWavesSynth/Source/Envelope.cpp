@@ -16,39 +16,35 @@ Envelope::Envelope(SaucyWavesSynthAudioProcessor& p):
 processor(p)
 {
     setSize(200, 200);
-//    getLookAndFeel().setColour(Slider::thumbColourId, Colours::orange);
-//    getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
-    
     attackSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        attackSlider.setRange(1.0f, 5000.0f);
-        attackSlider.setValue(1.0f);
-//        attackSlider.addListener(this);
-//    attackSlider.setLookAndFeel(&lookAndFeel);
-        addAndMakeVisible(&attackSlider);
+    attackSlider.setSliderSnapsToMousePosition(false);
+    attackSlider.setRange(1.0f, 5.0f);
+    attackSlider.setValue(0.1f);
+    addAndMakeVisible(&attackSlider);
     
-        releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        releaseSlider.setRange(1.0f, 5000.0f);
-        releaseSlider.setValue(1.0f);
-//        releaseSlider.addListener(this);
-        addAndMakeVisible(&releaseSlider);
+    decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    decaySlider.setSliderSnapsToMousePosition(false);
+    decaySlider.setRange(0.1f, 2.0f);
+    decaySlider.setValue(0.8f);
+    addAndMakeVisible(&decaySlider);
     
-        sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        sustainSlider.setRange(1.0f, 5000.0f);
-        sustainSlider.setValue(1.0f);
-//        sustainSlider.addListener(this);
-        addAndMakeVisible(&sustainSlider);
+    sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    sustainSlider.setSliderSnapsToMousePosition(false);
+    sustainSlider.setRange(0.1f, 1.0f);
+    sustainSlider.setValue(0.8f);
+    addAndMakeVisible(&sustainSlider);
     
-        decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-        decaySlider.setRange(1.0f, 5000.0f);
-        decaySlider.setValue(1.0f);
-//        decaySlider.addListener(this);
-        addAndMakeVisible(&decaySlider);
+    releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    releaseSlider.setSliderSnapsToMousePosition(false);
+    releaseSlider.setRange(1.0f, 5.0f);
+    releaseSlider.setValue(0.8f);
+    addAndMakeVisible(&releaseSlider);
     
     //    Linking the slider with the processor, on the parameter value "attack"
-        attackTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"attack",attackSlider);
-        releaseTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"release",releaseSlider);
-        decayTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"decay",decaySlider);
-        sustainTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"sustain",sustainSlider);
+    attackTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"attack",attackSlider);
+    releaseTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"release",releaseSlider);
+    decayTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"decay",decaySlider);
+    sustainTree = new AudioProcessorValueTreeState::SliderAttachment (processor.tree,"sustain",sustainSlider);
 
 }
 
@@ -89,24 +85,3 @@ void Envelope::resized()
     releaseSlider.setBounds(area.removeFromLeft(sliderWidth).removeFromTop(sliderHeight).withTrimmedTop(5));
 
 }
-
-//void Envelope::sliderValueChanged(Slider *slider)
-//{
-//    if(slider == &attackSlider)
-//    {
-//        processor.attackTime = slider->getValue();
-//    }
-//    if(slider == &releaseSlider)
-//    {
-//        processor.releaseTime = slider->getValue();
-//    }
-//    if(slider == &decaySlider)
-//    {
-//        processor.decayTime = slider->getValue();
-//    }
-//    if(slider == &sustainSlider)
-//    {
-//        processor.sustainTime = slider->getValue();
-//    }
-//
-//}

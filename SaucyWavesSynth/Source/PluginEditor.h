@@ -15,6 +15,7 @@
 #include "Oscillator.h"
 #include "Envelope.h"
 #include "Filter.h"
+#include "MasterGain.h"
 
 //==============================================================================
 /**
@@ -38,6 +39,9 @@ private:
     Oscillator oscGUI;
     Envelope envGUI;
     Filter filterGUI;
+    MasterGain masterGUI;
+    Label title;
+    Font font;
     
     MidiKeyboardState keyboardState;
     MidiKeyboardComponent keyboardComponent;
